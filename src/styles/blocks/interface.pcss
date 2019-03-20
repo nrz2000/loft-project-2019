@@ -77,9 +77,14 @@
     &:not(:last-child) {
       margin-right: 60px;
     }
-    &:hover {
+    &:hover,
+    &:focus {
       transition: 0.2s;
       color: #008bff;
+    }
+    &:active {
+      transition: 0.2s;
+      opacity: 0.5;
     }
   }
 }
@@ -94,9 +99,14 @@
   }
   &__link {
     display: flex;
-    &:hover .socials__icon {
+    &:hover .socials__icon,
+    &:focus .socials__icon {
       transition: 0.3s;
       fill: #008bff;
+    }
+    &:active .socials__icon {
+      transition: 0.3s;
+      opacity: 0.5;
     }
   }
   &__icon {
@@ -213,19 +223,30 @@
   text-transform: uppercase;
   color: #ffffff;
   transition: 0.3s;
-  &:hover {
+  &:hover,
+  &:focus {
     cursor: pointer;
     transition: 0.3s;
     background-image: linear-gradient(to right, #005dff 0%, #0091ff 100%);
   }
+  &:active {
+    transition: 0.3s;
+    opacity: 0.5;
+  }
 }
 .slider__button {
   transition: 0.3s;
+  color: #ffffff;
   &_disabled {
     color: #6c7683;
   }
-  &:not(.slider__button_disabled):hover {
+  &:not(.slider__button_disabled):hover,
+  &:not(.slider__button_disabled):focus {
     transition: 0.3s;
     background: #008bff;
+  }
+  &:not(.slider__button_disabled):active {
+    transition: 0.3s;
+    opacity: 0.5;
   }
 }
