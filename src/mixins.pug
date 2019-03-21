@@ -3,5 +3,27 @@ mixin icon(name, className)
   svg(class=className viewBox=icon.viewBox preserveAspectRatio="none")
     use(xlink:href=icon.url)
 
-mixin image(path, className)
-  img(src=require(`images/${path}`) class=className)
+mixin image(path, className, alt)
+  img(src=require(`images/content/${path}`) class=className alt=alt)
+
+
+mixin nav(className, items)
+  nav(class=`${className}`)
+    ul(class=`${className}__list`)
+      each item in items 
+        li(class=`${className}__child`)
+          a(class=`${className}__link` href="#")= item
+
+mixin socials(className)
+  div(class=`${className}`)
+    ul(class=`${className}__list`)
+      -
+        var socials = [ 
+          ['inst','https://www.instagram.com/nz_nikita_nz/'], 
+          ['vk','https://vk.com/id328570314'], 
+          ['github','https://github.com/nrz2000']
+        ] 
+      each item in socials
+        li(class=`${className}__child`)
+          a(class=`${className}__link ${className}__link_${item[0]}` href=`${item[1]}` target="_blank")
+            +icon(item[0],`${className}__icon` )
