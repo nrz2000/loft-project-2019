@@ -1,20 +1,15 @@
 import Vue from "vue";
 
 const skill = {
-  template: "#skills",
+  template: "#skill",
   props: {
     skillName: String,
-    skillPrecent: Number
+    skillPercent: Number
   },
   methods: {
     drawColoredCircle() {
       const circle = this.$refs["color-circle"];
-      const dashArray = parseInt(
-        getComputedStyle(circle).getPropertyValue('stroke-dasharray')
-      );
-      const percent = (dashArray / 100) * (100 - this.skillPercent);
-    
-      circle.style.strokeDashoffset = percent;
+      circle.style.animationDelay = `-${this.skillPercent}s`;
     }
   },
   mounted() {
@@ -34,7 +29,7 @@ const skillsRow = {
 
 new Vue ({
   el: "#skills-component",
-  template: "skills-list",
+  template: "#skills-list",
   components: {
     skillsRow
   },
