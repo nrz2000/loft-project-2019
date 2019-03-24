@@ -22,7 +22,7 @@
     top: 100%;
     left: 0;
     width: 100%;
-    height: 100%
+    height: 185px;
   }
 }
 .add-slide {
@@ -30,9 +30,15 @@
   padding: 140px 0;
   background: #090224;
   z-index: 1;
+  @include desktopHd {
+    padding-bottom: 165px;
+  }
   &__child {
     &:not(:first-child) {
       margin-top: 175px;
+      @include desktopHd {
+        margin-top: 192px;
+      }
     }
   }
   &:after {
@@ -94,7 +100,7 @@
   }
   &__child {
     &:not(:last-child) {
-      margin-right: 44px;
+      margin-right: 2.88rem;
     }
   }
   &__link {

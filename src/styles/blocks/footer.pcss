@@ -1,6 +1,9 @@
 .footer {
   padding: 103px 0 100px;
   background: #0a001d;
+  @include desktopHd {
+    padding-top: 75px;
+  }
   &__wrap {
     display: flex;
     justify-content: space-between;
@@ -10,9 +13,16 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
+    @include desktopHd {
+      flex-basis: 26%;
+      flex-direction: column;
+    }
   }
   &__right {
     flex-basis: 66%;
+    @include desktopHd {
+      flex-basis: 74%;
+    }
   }
   &__copyright {
     /* flex-basis: 53%; */
@@ -22,17 +32,28 @@
     line-height: 45px;
     opacity: 0.1;
     color: #ffffff;
+    @include desktopHd {
+      margin: 0;
+
+    }
   }
   &__author {
     flex-basis: 43%;
+    @include desktopHd {
+      margin-top: 22px;
+    }
     &-name {
       font-size: 18px;
       font-weight: 700;
       line-height: 27px;
       text-transform: uppercase;
       color: #ffffff;
+      @include desktopHd {
+        width: 70%;
+      }
     }
     &-project {
+      display: inline-block;
       margin-top: 20px;
       font-size: 16px;
       font-weight: 400;
@@ -45,6 +66,9 @@
     display: flex;
     justify-content: space-between;
     margin-top: 53px;
+    @include desktopHd {
+      margin-top: 57px;
+    }
     &-project {
       flex-basis: 48%;
       line-height: 30px;
@@ -75,6 +99,7 @@
     font-size: 16px;
     color: #ffffff;
     &-author {
+      display: inline-block;
       margin-top: 18px;
       font-style: italic;
       opacity: 1;

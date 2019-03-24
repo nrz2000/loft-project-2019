@@ -7,15 +7,25 @@
   &__child {
     &:not(:first-child) {
       margin-top: 41px;
+    @include desktopHd {
+      margin-top: 33px;
+    }
     }
   }
   &__list {
     position: relative;
     display: flex;
     margin-top: 45px;
+    @include desktopHd {
+      margin-top: 2rem;
+      justify-content: space-between;
+    }
     &-child {
       &:not(:last-child) {
         margin-right: 70px;
+        @include desktopHd {
+          margin-right: 0;
+        }
       }
     }
     &-item {
@@ -27,6 +37,10 @@
       width: 145px;
       height: 145px;
       transform: rotate(-180deg);
+      @include desktopHd {
+        width: 160px;
+        height: 160px;
+      }
     }
     &-title {
       position: absolute;

@@ -1,16 +1,27 @@
 .slider-work {
   display: flex;
+  align-items: flex-start;
   &__left {
     position: relative;
     flex-basis: 68%;
     margin-right: 160px;
+    @include desktopHd {
+      flex-basis: 63%;
+      margin-right: 105px;
+    }
   }
   &__right {
     flex-basis: 24%;
+    @include desktopHd {
+      flex-basis: 35%;
+    }
   }
   &__main {
     position: relative;
     z-index: 1;
+    @include desktopHd {
+      height: 355px;
+    }
     &-number {
       position: absolute;
       display: flex;
@@ -25,7 +36,15 @@
       line-height: 450px;
       color: #f0f0f0;
       z-index: -1;
+      @include desktopHd {
+        right: -120px;
+        font-size: 300px;
+        line-height: 200px;
+      }
     }
+  }
+  &__img {
+    height: 100%;
   }
   &__status {
     position: absolute;
@@ -34,9 +53,20 @@
     display: flex;
     height: 100px;
     z-index: 2;
+    @include desktopHd {
+      bottom: 30px;
+    }
     &-child {
-    width: 175px;
-    position: relative;
+      width: 175px;
+      position: relative;
+      &:nth-child(n+5) {
+        display: none;
+      }
+      @include desktopHd {
+        &:nth-child(n+4) {
+          display: none;
+        }
+      }
       &:hover:after {
         /* &>.slider-work__status-wrap:after { */
         content: '';
@@ -73,7 +103,7 @@
   &__tool {
     display: flex;
     &-child {
-      padding: 12px 16px;
+      padding: 15px 16px;
       border-radius: 23px;
       font-size: 15px;
       font-weight: 600;
@@ -94,6 +124,9 @@
       line-height: 46px;
       font-weight: 700;
       color: #2d3c4e;
+      @include desktopHd {
+        margin-top: 35px;
+      }
     }
     &-descr {
       margin-top: 33px;

@@ -25,9 +25,9 @@ script(type="text/x-template")#slider-display
 script(type="text/x-template")#slider-thumbs
   .slider-work__status
     button.slider-work__status-child( 
-      v-for="work in works" :key="work.id" :class="{active: currentWork.id = work.id}"
+      v-for="work in works" :key="work.id" :class="{'slider-work__status-child_active': currentWork.id === work.id}"
     )
-      
+
       img(:src="work.photo").slider-work__preview
     btns(
       @slide="direction => $emit('slide', direction)"

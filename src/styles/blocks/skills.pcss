@@ -1,5 +1,9 @@
 .skills {
   padding: 262px 0 150px 0;
+  @include desktopHd {
+    padding-top: 190px;
+    padding-bottom: 136px;
+  }
   &__title {
     font-weight: 700;
     font-size: 30px;
@@ -9,22 +13,35 @@
     margin-top: 47px;
     color: #0a001d;
     line-height: 30px;
+  @include desktopHd {
+    margin-top: 48px;
+  }
   }
   &__top {
     width: 40%;
     margin-left: 34%;
+    @include desktopHd {
+      width: 51%;
+      margin-left: 26%;
+    }
   }
   &__bottom {
     display: flex;
     justify-content: space-between;
     margin-top: 84px;
+    /* @include desktopHd {
+      margin-top: 5.9rem;
+    } */
   }
   &__img {
     position: relative;
     flex-basis: 32%
   }
   &__metrics {
-    flex-basis: 58%
+    flex-basis: 58%;
+    @include desktopHd {
+      flex-basis: 66%;
+    }
   }
   &__guitar {
     position: absolute;
@@ -32,6 +49,12 @@
     right: 0;
     width: 548px;
     height: 1223px;
+    @include desktopHd {
+      bottom: 90px;
+      height: 900px;
+      object-fit: contain;
+
+    }
   }
   &__bg {
     position: absolute;

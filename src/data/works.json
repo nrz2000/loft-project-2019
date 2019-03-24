@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "title": "1 Сайт школы образования",
-    "skills": "1 Html, Css, JavaScript",
+    "title": "Сайт школы образования",
+    "skills": "HTML, CSS, JavaScript",
     "photo": "work-1.jpg",
     "link": "//loftschool.ru",
-    "desc": "1 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
+    "desc": "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
   },
   {
     "id": 2,
     "title": "Сайт школы образования",
-    "skills": "Html, Css, JavaScript",
+    "skills": "HTML, CSS, JavaScript",
     "photo": "work-2.jpg",
     "link": "//loftschool.ru",
     "desc": "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "title": "Сайт школы образования",
-    "skills": "Html, Css, JavaScript",
+    "skills": "HTML, CSS, JavaScript",
     "photo": "work-3.jpg",
     "link": "//loftschool.ru",
     "desc": "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
@@ -26,7 +26,7 @@
   {
     "id": 4,
     "title": "Сайт школы образования",
-    "skills": "Html, Css, JavaScript",
+    "skills": "HTML, CSS, JavaScript",
     "photo": "work-4.jpg",
     "link": "//loftschool.ru",
     "desc": "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
@@ -34,7 +34,7 @@
   {
     "id": 5,
     "title": "Сайт школы образования",
-    "skills": "Html, Css, JavaScript",
+    "skills": "HTML, CSS, JavaScript",
     "photo": "work-5.jpg",
     "link": "//loftschool.ru",
     "desc": "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
