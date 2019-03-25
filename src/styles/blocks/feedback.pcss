@@ -1,10 +1,16 @@
 .feedback {
   &__title {
     margin-right: 95px;
+    @include desktop {
+      margin-right: 70px;
+    }
   }
   &__top {
     width: 60%;
     display: flex;
+    @include desktop {
+      width: 100%;
+    }
   }
   &__slider {
     width: 70%;
@@ -12,6 +18,10 @@
     @include desktopHd {
       width: 83%;
       margin-top: 93px;
+    }
+    @include desktop {
+      width: 100%;
+      margin-top: 55px;
     }
   }
 }

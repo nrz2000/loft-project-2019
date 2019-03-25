@@ -4,6 +4,9 @@
   @include desktopHd {
     padding-top: 75px;
   }
+  @include desktop {
+    padding-top: 56px;
+  }
   &__wrap {
     display: flex;
     justify-content: space-between;
@@ -17,15 +20,20 @@
       flex-basis: 26%;
       flex-direction: column;
     }
+    @include desktop {
+      flex-basis: 35%;
+    }
   }
   &__right {
     flex-basis: 66%;
     @include desktopHd {
       flex-basis: 74%;
     }
+    @include desktop {
+      flex-basis: 66%;
+    }
   }
   &__copyright {
-    /* flex-basis: 53%; */
     margin-right: 60px;
     font-size: 48px;
     font-weight: 600;
@@ -60,6 +68,9 @@
       line-height: 30px;
       opacity: 0.15;
       color: #ffffff;
+      @include desktop {
+        margin-top: 15px;
+      }
     }
   }
   &__info {
@@ -69,15 +80,28 @@
     @include desktopHd {
       margin-top: 57px;
     }
+    @include desktop {
+      margin-top: 50px;
+      flex-direction: column;
+    }
     &-project {
       flex-basis: 48%;
       line-height: 30px;
+      @include desktop {
+        &:not(:first-child) {
+          margin-top: 50px;
+        }
+      }
     }
     &-descr {
       opacity: 0.3;
       font-size: 16px;
       font-weight: 400;
       color: #ffffff;
+      @include desktop {
+        font-size: 14px;
+        line-height: 24px;
+      }
     }
     &-social {
       margin-top: 22px;
@@ -104,6 +128,22 @@
       font-style: italic;
       opacity: 1;
       color: #ffffff;
+      @include desktop {
+        font-size: 14px;
+        margin-top: 6px;
+      }
+    }
+  }
+  &__nav {
+    & .nav__child {
+      @include desktop {
+        &:nth-child(4) {
+          margin: 0;
+        }
+        &:nth-child(n+5) {
+          margin-top: 23px;
+        }
+      }
     }
   }
 }

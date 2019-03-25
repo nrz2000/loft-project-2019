@@ -1,6 +1,9 @@
 .slider-work {
   display: flex;
   align-items: flex-start;
+  @include desktop {
+    flex-direction: column;
+  }
   &__left {
     position: relative;
     flex-basis: 68%;
@@ -9,11 +12,20 @@
       flex-basis: 63%;
       margin-right: 105px;
     }
+    @include desktop {
+      flex-basis: 100%;
+      margin-right: 60px;
+    }
   }
   &__right {
     flex-basis: 24%;
     @include desktopHd {
       flex-basis: 35%;
+    }
+    @include desktop {
+      margin-top: 57px;
+      flex-basis: 100%;
+      text-align: center;
     }
   }
   &__main {
@@ -102,6 +114,9 @@
   }
   &__tool {
     display: flex;
+    @include desktop {
+      justify-content: center;
+    }
     &-child {
       padding: 15px 16px;
       border-radius: 23px;
@@ -127,26 +142,44 @@
       @include desktopHd {
         margin-top: 35px;
       }
+      @include desktop {
+        margin-top: 17px;
+      }
     }
     &-descr {
       margin-top: 33px;
       color: #2b3948;
       line-height: 30px;
       opacity: 0.7;
+      @include desktop {
+        width: 65%;
+        margin: 0 auto;
+        margin-top: 15px;
+        line-height: 25px;
+      }
     }
   }
   &__link {
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     margin-top: 34px;
     font-size: 18px;
     font-weight: 700;
     color: #4b6fd7;
     text-decoration: none;
+    @include desktop {
+      text-align: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
     &-title {
       position: relative;
       transition: 0.3s;
+      @include desktop {
+        font-size: 14px;
+      }
       &:after {
         content: '';
         position: absolute;

@@ -4,6 +4,9 @@
   @include desktopHd {
     padding-bottom: 195px;
   }
+  @include desktop {
+    padding-bottom: 80px;
+  }
   &__wrap {
     width: 77%;
     margin: 0 auto;
@@ -20,6 +23,10 @@
     @include desktopHd {
       grid-gap: 70px 60px;
     }
+    @include desktop {
+      grid-template-columns: 37% 54%;
+      grid-gap: 30px 60px;
+    }
   }
   &__title {
     margin: 12px 0;
@@ -30,9 +37,16 @@
     @include desktopHd {
       margin: 12px 0 28px;
     }
+    @include desktop {
+      margin: 7px 0 40px 0;
+      font-size: 30px;
+    }
   }
   &__descr {
     line-height: 30px;
+    @include desktop {
+      line-height: 25px;
+    }
   }
   &__prompt {
     position: relative;
@@ -66,10 +80,12 @@
   &__avatar {
     width: 200px;
     height: 200px;
-    /* @include desktopHd {
-      width: 13.5rem;
-      height: 13.5rem;
-    } */
+    @include desktop {
+      align-self: center;
+      justify-self: start;
+      width: 170px;
+      height: 170px;
+    }
   }
   &__info {
     justify-self: start;
@@ -88,13 +104,23 @@
     color: #ffffff;
     font-weight: 700;
     padding: 7px 0;
+    @include desktop {
+      padding: 6px 0;
+      font-size: 14px;
+    }
     &:first-child {
       padding-right: 75px;
+      @include desktop {
+        padding-right: 15px;
+      }
     }
     &_light {
       opacity: 0.15;
       font-size: 16px;
       font-weight: 600;
+      @include desktop {
+        font-size: 14px;
+      }
     }
   }
 }

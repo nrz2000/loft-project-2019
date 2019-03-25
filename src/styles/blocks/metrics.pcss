@@ -3,13 +3,19 @@
     font-size: 24px;
     font-weight: 700;
     color: #0a001d;
+    @include desktop {
+      font-size: 20px;
+    }
   }
   &__child {
     &:not(:first-child) {
       margin-top: 41px;
-    @include desktopHd {
-      margin-top: 33px;
-    }
+      @include desktopHd {
+        margin-top: 33px;
+      }
+      @include desktop {
+        margin-top: 40px;
+      }
     }
   }
   &__list {
@@ -19,6 +25,9 @@
     @include desktopHd {
       margin-top: 2rem;
       justify-content: space-between;
+    }
+    @include desktop {
+      margin-top: 15px;
     }
     &-child {
       &:not(:last-child) {
@@ -40,6 +49,10 @@
       @include desktopHd {
         width: 160px;
         height: 160px;
+      }
+      @include desktop {
+        width: 140px;
+        height: 140px;
       }
     }
     &-title {

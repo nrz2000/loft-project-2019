@@ -4,18 +4,29 @@
     padding-top: 190px;
     padding-bottom: 136px;
   }
+  @include desktop {
+    padding-top: 155px;
+    padding-bottom: 100px;
+  }
   &__title {
     font-weight: 700;
     font-size: 30px;
     color: #0a001d;
+    @include desktop {
+      width: 88%;
+      margin-left: 9%;
+    }
   }
   &__subtitle {
     margin-top: 47px;
     color: #0a001d;
     line-height: 30px;
-  @include desktopHd {
-    margin-top: 48px;
-  }
+    @include desktopHd {
+      margin-top: 48px;
+    }
+    @include desktop {
+      margin-top: 5px;
+    }
   }
   &__top {
     width: 40%;
@@ -24,23 +35,39 @@
       width: 51%;
       margin-left: 26%;
     }
+    @include desktop {
+      width: 65%;
+      margin-left: 16%;
+      text-align: center;
+    }
   }
   &__bottom {
     display: flex;
     justify-content: space-between;
     margin-top: 84px;
-    /* @include desktopHd {
-      margin-top: 5.9rem;
-    } */
+    @include desktop {
+      flex-direction: column;
+      margin-top: 35px;
+      text-align: center;
+    }
   }
   &__img {
     position: relative;
-    flex-basis: 32%
+    flex-basis: 32%;
+    @include desktop {
+      order: 1;
+      flex-basis: 100%;
+      margin-top: 56px;
+    }
   }
   &__metrics {
     flex-basis: 58%;
     @include desktopHd {
       flex-basis: 66%;
+    }
+    @include desktop {
+      order: -1;
+      flex-basis: 100%;
     }
   }
   &__guitar {
@@ -53,7 +80,13 @@
       bottom: 90px;
       height: 900px;
       object-fit: contain;
-
+    }
+    @include desktop {
+      position: relative;
+      /* transform: rotate(90deg); */
+      height: 100%;
+      width: 100%;
+      bottom: 0;
     }
   }
   &__bg {
@@ -62,7 +95,6 @@
     right: 0;
     width: 786px;
     height: 641px;
-    /* background: '../images/content/skills-bg.png' center no-repeat; */
     z-index: -1;
   }
 }

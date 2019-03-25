@@ -1,13 +1,18 @@
 .portfolio {
   padding: 130px 0 152px;
   background-color: #f8f8f8;
-  /* @include desktop {
-    padding-top: 55px;
-  } */
+  @include desktop {
+    padding-top: 110px;
+    padding-bottom: 118px;
+    overflow-x: hidden;
+  }
   &__slider {
     margin-top: 90px;
     @include desktopHd {
       margin-top: 55px;
+    }
+    @include desktop {
+      margin-top: 50px;
     }
   }
 }
