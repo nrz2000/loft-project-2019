@@ -12,26 +12,45 @@ html(lang="en")
 
     .main-slide
       header.header
-          .container
-            .header__wrap.fullscreen-section
-              .header__top
-                .header__logo
-                  span.logo НЗ
-                .header__nav 
-                  +nav('nav', ["Главная","Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
-                .header__mobile-menu
-                  .header__socials
-                    +socials('socials')
-                  .header__nav-bar
-                    .nav-bar
-                      span.nav-bar__child
-              .header__middle
-                h1.header__title Зиновьев <br> Никита
-                span.header__subtitle Личный сайт <br> веб-разработчика
-              .header__bottom
-                button.header__button
-                  span.header__prompt Скролл
-                  +icon('scroll','scroll')
+        .parallax
+          .parallax__layer
+            +image("main-slice-1.jpg", "parallax__img", "Параллакс слайд")
+          .parallax__layer
+            +image("main-slice-2.png", "parallax__img", "Параллакс слайд")
+          .parallax__layer
+            +image("main-slice-3.png", "parallax__img", "Параллакс слайд")
+          .parallax__layer
+            +image("main-slice-4.png", "parallax__img", "Параллакс слайд")
+          .parallax__layer
+            +image("main-slice-5.png", "parallax__img", "Параллакс слайд")
+          .parallax__layer
+            +image("main-slice-6.png", "parallax__img", "Параллакс слайд")
+          .parallax__layer
+            +image("main-slice-7.png", "parallax__img", "Параллакс слайд")
+          .parallax__layer
+            +image("main-slice-8.png", "parallax__img", "Параллакс слайд")
+          .parallax__layer
+            +image("main-slice-9.png", "parallax__img", "Параллакс слайд")
+        .container
+          .header__wrap.fullscreen-section
+            .header__top
+              .header__logo
+                span.logo НЗ
+              .header__nav 
+                +nav('nav', ["Главная","Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
+              .header__mobile-menu
+                .header__socials
+                  +socials('socials')
+                .header__nav-bar
+                  .nav-bar
+                    span.nav-bar__child
+            .header__middle
+              h1.header__title Зиновьев <br> Никита
+              span.header__subtitle Личный сайт <br> веб-разработчика
+            .header__bottom
+              button.header__button
+                span.header__prompt Скролл
+                +icon('scroll','scroll')
       section.about
         .container
           .about__wrap
@@ -97,7 +116,7 @@ html(lang="en")
                   -
                     var feedback = [
                       ['Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!','fb-1.png','Ковальчук Дмитрий','Основатель Loftschool'],
-                      ['Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах','fb-2.png','Владимир Сабанцев','Преподаватель']
+                      //- ['Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах','fb-2.png','Владимир Сабанцев','Преподаватель']
                     ]
                   each item in feedback
                       .slider-feedback__child

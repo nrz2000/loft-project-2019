@@ -8,6 +8,11 @@
     padding-top: 155px;
     padding-bottom: 100px;
   }
+  @include tablets {
+    padding-top: 95px;
+    padding-bottom: 100px;
+    overflow-x: hidden;
+  }
   &__title {
     font-weight: 700;
     font-size: 30px;
@@ -15,6 +20,12 @@
     @include desktop {
       width: 88%;
       margin-left: 9%;
+    }
+    @include tablets {
+      width: 100%;
+      margin-left: 0;
+      font-size: 24px;
+      line-height: 33px;
     }
   }
   &__subtitle {
@@ -26,6 +37,10 @@
     }
     @include desktop {
       margin-top: 5px;
+    }
+    @include tablets {
+      margin-top: 16px;
+      line-height: 25px;
     }
   }
   &__top {
@@ -40,6 +55,11 @@
       margin-left: 16%;
       text-align: center;
     }
+    @include tablets {
+      width: 100%;
+      margin-left: 0;
+      text-align: left;
+    }
   }
   &__bottom {
     display: flex;
@@ -49,6 +69,9 @@
       flex-direction: column;
       margin-top: 35px;
       text-align: center;
+    }
+    @include tablets {
+      margin-top: 45px;
     }
   }
   &__img {
@@ -96,5 +119,11 @@
     width: 786px;
     height: 641px;
     z-index: -1;
+    @include tablets {
+      width: 247px;
+      height: 201px;
+      bottom: -80px;
+      right: -30px;
+    }
   }
 }

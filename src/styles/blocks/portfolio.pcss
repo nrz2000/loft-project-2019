@@ -6,6 +6,11 @@
     padding-bottom: 118px;
     overflow-x: hidden;
   }
+  @include tablets {
+    padding-top: 160px;
+    padding-bottom: 103px;
+    text-align: center;
+  }
   &__slider {
     margin-top: 90px;
     @include desktopHd {
@@ -13,6 +18,9 @@
     }
     @include desktop {
       margin-top: 50px;
+    }
+    @include tablets {
+      margin-top: 27px;
     }
   }
 }

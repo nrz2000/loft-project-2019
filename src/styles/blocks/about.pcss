@@ -27,6 +27,10 @@
       grid-template-columns: 37% 54%;
       grid-gap: 30px 60px;
     }
+    @include tablets {
+      grid-template-columns: 1fr;
+      grid-gap: 15px 60px;
+    }
   }
   &__title {
     margin: 12px 0;
@@ -40,6 +44,10 @@
     @include desktop {
       margin: 7px 0 40px 0;
       font-size: 30px;
+    }
+    @include tablets {
+      line-height: 38px;
+      margin: 7px 0 35px 0;
     }
   }
   &__descr {
@@ -71,10 +79,16 @@
     &_first,
     &_third {
       grid-column: 1 / 2;
+      @include tablets {
+        grid-column: 1 / 2;
+      }
     }
     &_second,
     &_fourth {
       grid-column: 2 / 3;
+      @include tablets {
+        grid-column: 1 / 2;
+      }
     }
   }
   &__avatar {
@@ -86,6 +100,9 @@
       width: 170px;
       height: 170px;
     }
+    @include tablets {
+      justify-self: center;
+    }
   }
   &__info {
     justify-self: start;
@@ -93,6 +110,10 @@
     @include desktopHd {
       justify-self: start;
       margin: 0;
+    }
+    @include tablets {
+      grid-row: 2 / 3;
+      justify-self: center;
     }
     &-child {
       display: flex;
@@ -108,10 +129,16 @@
       padding: 6px 0;
       font-size: 14px;
     }
+    @include tablets {
+      padding: 5px 0;
+    }
     &:first-child {
       padding-right: 75px;
       @include desktop {
         padding-right: 15px;
+      }
+      @include tablets {
+        padding-right: 50px;
       }
     }
     &_light {
@@ -121,6 +148,11 @@
       @include desktop {
         font-size: 14px;
       }
+    }
+  }
+  &__content {
+    @include tablets {
+      grid-row: 3 / 4;
     }
   }
 }

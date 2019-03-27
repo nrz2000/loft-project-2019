@@ -16,6 +16,9 @@
       @include desktop {
         margin-top: 40px;
       }
+      @include desktop {
+        margin-top: 57px;
+      }
     }
   }
   &__list {
@@ -29,11 +32,19 @@
     @include desktop {
       margin-top: 15px;
     }
+    @include tablets {
+      flex-wrap: wrap;
+    }
     &-child {
       &:not(:last-child) {
         margin-right: 70px;
         @include desktopHd {
           margin-right: 0;
+        }
+      }
+      @include tablets {
+        &:nth-child(n+3) {
+          margin-top: 8px;
         }
       }
     }
@@ -54,6 +65,10 @@
         width: 140px;
         height: 140px;
       }
+      @include tablets {
+        width: 130px;
+        height: 130px;
+      }
     }
     &-title {
       position: absolute;
@@ -63,6 +78,9 @@
       font-weight: 700;
       opacity: 0.5;
       color: #0a001d;
+      @include tablets {
+        font-size: 16px;
+      }
     }
   }
   &__circle {

@@ -5,6 +5,9 @@
     justify-content: space-between;
     align-items: center;
     padding: 64px 0 128px 0;
+    @include tablets {
+      padding-bottom: 200px;
+    }
   }
   &__top {
     display: flex;
@@ -21,6 +24,10 @@
       font-size: 50px;
       margin-top: 15px;
       text-align: center;
+    }
+    @include tablets {
+      font-size: 36px;
+      line-height: 44px;
     }
   }
   &__nav {
@@ -50,12 +57,19 @@
       margin-right: 0;
       text-align: center;
     }
+    @include tablets {
+      font-size: 14px;
+      line-height: 25px;
+    }
   }
   &__bottom {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    @include tablets {
+      display: none;
+    }
   }
   &__button {
     display: flex;
@@ -80,6 +94,11 @@
     @include desktop {
       display: block;
       margin-left: 93px;
+    }
+  }
+  &__socials {
+    @include phones {
+      display: none;
     }
   }
 }

@@ -4,12 +4,19 @@
     @include desktop {
       margin-right: 70px;
     }
+    @include tablets {
+      margin-right: 0px;
+    }
   }
   &__top {
     width: 60%;
     display: flex;
     @include desktop {
       width: 100%;
+    }
+    @include tablets {
+      flex-direction: column;
+      justify-content: center;
     }
   }
   &__slider {
@@ -22,6 +29,9 @@
     @include desktop {
       width: 100%;
       margin-top: 55px;
+    }
+    @include tablets {
+      margin-top: 26px;
     }
   }
 }

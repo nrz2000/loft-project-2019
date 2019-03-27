@@ -5,6 +5,10 @@
     display: flex;
     align-items: center;
     color: #ffffff;
+    @include tablets {
+      justify-content: center;
+      margin-top: 25px;
+    }
   }
   &__button {
     display: flex;
@@ -31,6 +35,10 @@
       padding-left: 40px;
       flex-basis: 48%;
     }
+    @include tablets {
+      flex-basis: 100%;
+      padding-left: 0px;
+    }
     &:before {
       content: '';
       position: absolute;
@@ -43,6 +51,9 @@
         width: 30px;
         height: 30px;
         background-size: contain;
+      }
+      @include tablets {
+        left: -40px;
       }
     }
   }
@@ -96,5 +107,9 @@
     height: 75px;
     width: 75px;
     border-radius: 50%;
+    @include desktop {
+      height: 50px;
+      width: 50px;
+    }
   }
 }
