@@ -25,9 +25,4 @@ new Vue({
       this.$refs.flickity.previous();
     }
   },
-  // screenSize() {
-  //   if (matchMedia('screen and (max-width: 768px)').matches) {
-  //     this.flickityOptions.groupCells = 1;
-  //   }
-  // }
 });

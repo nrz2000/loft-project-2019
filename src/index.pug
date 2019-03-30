@@ -16,12 +16,10 @@ html(lang="en")
           +image("main-slice-1.jpg", "parallax__img", "Параллакс слайд")
         .parallax__layer(data-speed="0.2")
           +image("main-slice-2-n.png", "parallax__img", "Параллакс слайд")
-        .parallax__layer(data-speed="0.3")
+        .parallax__layer(data-speed="0.5")
           +image("main-slice-3-n.png", "parallax__img", "Параллакс слайд")
         .parallax__layer(data-speed="0.4")
           +image("main-slice-6.png", "parallax__img", "Параллакс слайд")
-        .parallax__layer
-          .parallax__img.parallax__img_color
         .parallax__layer(data-speed="0.2")
           +image("main-slice-8.png", "parallax__img", "Параллакс слайд")
         .parallax__layer(data-speed="0.1")
@@ -38,7 +36,7 @@ html(lang="en")
                 .header__socials
                   +socials('socials')
                 .header__nav-bar
-                  .nav-bar
+                  .nav-bar#burger-btn
                     span.nav-bar__child
             .header__middle
               h1.header__title Зиновьев <br> Никита
@@ -172,5 +170,15 @@ html(lang="en")
                 .footer__quote 
                   p.footer__info-descr Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
                 span.footer__quote-author Martin Golding
+
+    .mobile-menu#burger
+      .mobile-menu__wrap
+        .mobile-menu__close
+          button.close#close
+        .mobile-menu__content
+          .mobile-menu__nav
+            +nav('nav', ["Главная","Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
+          .mobile-menu__social
+            +socials('socials')
 
     include ./templates/entry.pug 

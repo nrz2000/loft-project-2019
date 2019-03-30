@@ -351,7 +351,7 @@
 .nav-bar {
   position: relative;
   width: 24px;
-  height: 2px;
+  height: 20px;
   &__child,
   &__child:after,
   &__child:before {
@@ -408,6 +408,9 @@
     &:nth-child(3) {
       & .parallax__img {
         top: 250px;
+        @include desktop {
+          top: 310px;
+        }
       }
     }
     &:nth-child(4) {
@@ -420,19 +423,11 @@
     }
     &:nth-child(5) {
       & .parallax__img {
-        top: 600px;
-        background-color: #06001d;
-        height: 600px;
-        width: 100%;
-      }
-    }
-    &:nth-child(6) {
-      & .parallax__img {
         bottom: 50%;
         transform: translateY(70%);
       }
     }
-    &:nth-child(7) {
+    &:nth-child(6) {
       & .parallax__img {
         bottom: 0;
       }
@@ -440,5 +435,33 @@
   }
   &__img {
     position: absolute;
+  }
+}
+.close {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    display: inline-block;
+    width: 25px;
+    height: 5px;
+    background: #414c63;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    display: inline-block;
+    width: 25px;
+    height: 5px;
+    background: #414c63;
+    transform: translateY(-50%) rotate(-45deg);
   }
 }
