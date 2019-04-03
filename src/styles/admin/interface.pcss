@@ -1,0 +1,319 @@
+.section {
+  &__title {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 34px;
+    @include desktop {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 34px;
+      color: #414c63;
+    }
+  }
+  &__form {
+    margin-top: 60px;
+    padding: 30px;
+    background: #ffffff;
+    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
+  }
+  &__edit {
+    &-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 34px;
+      color: #414c63;
+      padding-bottom: 25px;
+      border-bottom: 1px solid #dddee0;
+    }
+  }
+  &__label {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 30px;
+    color: #a0a6b1;
+  }
+  &__card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #ffffff;
+    box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
+    text-align: left;
+    &_add {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 0;
+      background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 30px;
+      color: #ffffff;
+    }
+    &-btns {
+      width: 100%;
+      margin-top: 45px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-btn {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 30px;
+      color: #414c63;
+    }
+  }
+  &__icon {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    &-plus {
+      position: relative;
+      width: 2px;
+      height: 34px;
+      background: #ffffff;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) rotate(90deg);
+        width: 2px;
+        height: 34px;
+        background: #ffffff;
+      }
+    }
+  }
+  &__list {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 'card-1 card-2 card-3';
+    grid-gap: 30px;
+    @include desktop {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "card-1 card-2"
+                            "card-3 card-4";
+    }
+  }
+  &__prompt {
+    margin-top: 30px;
+    width: 60%;
+    text-align: center;
+  }
+}
+input[type="file"] {
+  display: none;
+}
+.input {
+  background: transparent;
+  border: none;
+  padding: none;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 34px;
+  color: #414c63;
+  @include desktop {
+    font-size: 16px;
+  }
+  &_active {
+    border-bottom: 1px solid #000000;
+  }
+  &__new {
+    border-bottom: 1px solid #1f232d;
+  }
+  &__rate {
+    padding: 0 10px;
+  }
+  &__line {
+    height: 50px;
+    border-bottom: 1px solid #414c63;
+  }
+  &__feedback {
+    height: 50px;
+    border-bottom: 1px solid #414c63;
+  }
+  &::placeholder {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 34px;
+    opacity: 0.51;
+    color: #414c63;
+  }
+}
+.textarea {
+  resize: none;
+  padding: 20px;
+  border: 1px solid #d9dbe0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 30px;
+  color: #414c63;
+  &__work {
+    height: 150px;
+    margin-top: 20px;
+  }
+  &__feedback {
+    margin-top: 20px;
+  }
+  &::placeholder {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 34px;
+    opacity: 0.51;
+    color: #414c63;
+  }
+}
+.main {
+  position: relative;
+  background: url('../images/content/fest.jpg') center no-repeat;
+  background-size: cover;
+  padding: 60px 0;
+  z-index: 1;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: -1;
+  }
+}
+.username {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 34px;
+}
+.nav {
+  color: #414c63;
+  &__list {
+    display: flex;
+  }
+  &__child {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding: 32px 30px;
+    &_active {
+      color: #383bcf;
+      border-bottom: 3px solid #383bcf;
+    }
+  }
+}
+.add {
+  display: flex;
+  align-items: center;
+  &__icon {
+    margin-right: 13px;
+  }
+  &__title {
+    color: #383bcf;
+    font-size: 16px;
+    font-weight: 600;
+    @include desktop {
+      font-size: 14px;
+    }
+  }
+}
+.plus {
+  width: 21px;
+  height: 21px;
+  &_large {
+    height: 40px;
+    width: 40px;
+  }
+}
+.avatar {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.btn {
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  padding: 0 40px;
+  background-image: linear-gradient(to right, #006aed 0%, #3f35cb 100%);
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+  &_small {
+    height: 50px;
+  }
+  &_transparent {
+    color: #383bcf;
+    font-size: 16px;
+    font-weight: 500;
+    background: transparent;
+    text-transform: none;
+  }
+}
+.download {
+  &__title {
+    width: 50%;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 33.89px;
+    color: #9098a8;
+  }
+  &__label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 270px;
+    border: 1px dashed #a1a1a1;
+    background-color: #dee4ed;
+  }
+  &__btn {
+    margin-top: 30px;
+  }
+}
+.perform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: url("/images/icons/tick.svg") center no-repeat;
+}
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: url("/images/icons/Cross.svg") center no-repeat;
+}
+.edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: url("/images/icons/pencil.svg") center no-repeat;
+}
+.remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background: url("/images/icons/trash.svg") center no-repeat;
+}

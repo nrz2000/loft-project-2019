@@ -1,0 +1,29 @@
+.about {
+  &__top {
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    margin-right: 60px;
+  }
+  &__bottom {
+    margin-top: 61px;
+    display: grid;
+    grid-template-columns: [f-column-s] 1fr [s-column-s] 1fr [s-column-e];
+    grid-template-rows: auto;
+    grid-gap: 30px 30px;
+    @include desktop {
+      grid-gap: 20px;
+    }
+  }
+  &__card {
+    &:nth-child(2n-1) {
+      grid-column: f-column-s / s-column-s;
+      grid-row: auto;
+    }
+    &:nth-child(2n) {
+      grid-column: s-column-s / s-column-e;
+      grid-row: auto;
+    }
+  }
+}
