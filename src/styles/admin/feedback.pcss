@@ -9,6 +9,10 @@
     @include desktop {
       width: 100%;
     }
+    @include tablets {
+      grid-template-columns: 1fr;
+      grid-gap: 50px 0;
+    }
   }
   &__user {
     display: flex;
@@ -19,6 +23,9 @@
     @include desktop {
       justify-content: flex-start;
     }
+    @include tablets {
+      grid-column: 1 / 2 ;
+    }
   }
   &__add {
     margin-top: 30px;
@@ -26,9 +33,6 @@
     font-weight: 600;
     line-height: 33.89px;
     color: #383bcf;
-  }
-  &__content {
-    grid-column: info-s / info-e;
   }
   &__avatar {
     width: 200px;
@@ -41,14 +45,23 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-gap: 30px 40px;
+    grid-column: info-s / info-e;
     @include desktop {
       grid-template-columns: 1fr 1fr 1fr;
+    }
+    @include tablets {
+      grid-template-columns: 1fr;
+      grid-column: 1 / 2 ;
+      grid-gap: 25px 0px;
     }
     &-name {
       grid-column: 1 / 2;
       grid-row: 1 / 2;
       @include desktop {
         grid-column: 1 / 3;
+      }
+      @include tablets {
+        grid-column: 1 / 2;
       }
     }
     &-post {
@@ -57,6 +70,9 @@
       @include desktop {
         grid-column: 1 / 3;
         grid-row: 2 / 3;
+      }
+      @include tablets {
+        grid-column: 1 / 2;
       }
     }
     &-descr {
@@ -67,6 +83,9 @@
       @include desktop {
         grid-column: 1 / 4;
         grid-row: 3 / 4;
+      }
+      @include tablets {
+        grid-column: 1 / 2;
       }
     }
   }

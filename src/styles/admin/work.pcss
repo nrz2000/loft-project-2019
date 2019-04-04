@@ -12,12 +12,20 @@
       padding: 0 120px;
       grid-gap: 54px 0;
     }
+    @include tablets {
+      padding: 0;
+      grid-gap: 40px 0;
+    }
   }
   &__loader {
     grid-area: loader;
     @include desktop {
       display: flex;
       justify-content: center;
+    }
+    @include tablets {
+      display: flex;
+      flex-direction: column;
     }
   }
   &__add {
@@ -27,12 +35,18 @@
     line-height: 33.89px;
     color: #383bcf;
     text-align: center;
+    @include tablets {
+      margin-top: 20px;
+    }
   }
   &__content {
     grid-area: content;
     &-child {
       &:not(:first-child) {
         margin-top: 30px;
+        @include tablets {
+          margin-top: 20px;
+        }
       }
     }
     &-descr {
@@ -46,6 +60,10 @@
   }
   &__tags {
     display: flex;
+    @include tablets {
+      display: flex;
+      justify-content: space-between;
+    }
     &-child {
       padding: 7px 19px;
       border-radius: 15px;
@@ -55,6 +73,13 @@
       color: #414c63;
       &:not(:last-child) {
         margin-right: 10px;
+      }
+      &_edit {
+        &:not(:last-child) {
+          @include desktop {
+            margin: 0;
+          }
+        }
       }
     }
   }

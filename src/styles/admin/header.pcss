@@ -6,10 +6,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 0 19px;
+    @include tablets {
+      width: 85%;
+      margin: 0 auto;
+    }
   }
   &__info {
     display: flex;
     align-items: center;
+
   }
   &__avatar {
     width: 50px;
@@ -20,11 +25,18 @@
     display: flex;
     align-items: center;
     margin-right: 28px;
+    @include tablets {
+      line-height: 22px;
+      margin-right: 0px;
+    }
   }
   &__subtitle {
     font-size: 14px;
     line-height: 34px;
     opacity: 0.5;
+    @include tablets {
+      display: none;
+    }
   }
   &__exit {
     font-size: 16px;
