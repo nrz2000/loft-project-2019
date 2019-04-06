@@ -3,28 +3,72 @@
     font-size: 24px;
     font-weight: 700;
     color: #0a001d;
+    @include desktop {
+      font-size: 20px;
+    }
   }
   &__child {
     &:not(:first-child) {
       margin-top: 41px;
+      @include desktopHd {
+        margin-top: 33px;
+      }
+      @include desktop {
+        margin-top: 40px;
+      }
+      @include desktop {
+        margin-top: 57px;
+      }
     }
   }
   &__list {
     position: relative;
     display: flex;
     margin-top: 45px;
+    @include desktopHd {
+      margin-top: 2rem;
+      justify-content: space-between;
+    }
+    @include desktop {
+      margin-top: 15px;
+    }
+    @include tablets {
+      flex-wrap: wrap;
+    }
     &-child {
+      &:not(:last-child) {
+        margin-right: 70px;
+        @include desktopHd {
+          margin-right: 0;
+        }
+      }
+      @include tablets {
+        &:nth-child(n+3) {
+          margin-top: 8px;
+        }
+      }
+    }
+    &-item {
       display: flex;
       justify-content: center;
       align-items: center;
-      &:not(:last-child) {
-        margin-right: 70px;
-      }
     }
     &-shape {
-      width: 140px;
-      height: 140px;
+      width: 145px;
+      height: 145px;
       transform: rotate(-180deg);
+      @include desktopHd {
+        width: 160px;
+        height: 160px;
+      }
+      @include desktop {
+        width: 140px;
+        height: 140px;
+      }
+      @include tablets {
+        width: 130px;
+        height: 130px;
+      }
     }
     &-title {
       position: absolute;
@@ -34,6 +78,9 @@
       font-weight: 700;
       opacity: 0.5;
       color: #0a001d;
+      @include tablets {
+        font-size: 16px;
+      }
     }
   }
   &__circle {

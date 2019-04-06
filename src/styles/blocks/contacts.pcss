@@ -2,5 +2,20 @@
   &__form {
     width: 59%;
     margin-top: 80px;
+    @include desktopHd {
+      width: 81%;
+    }
+    @include desktop {
+      width: 100%;
+      margin-top: 42px;
+    }
+  }
+  &__title {
+    @include desktop {
+      text-align: center;
+    }
+    @include tablets {
+      text-align: left;
+    }
   }
 }
