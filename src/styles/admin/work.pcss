@@ -18,14 +18,15 @@
     }
   }
   &__loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     grid-area: loader;
     @include desktop {
-      display: flex;
-      justify-content: center;
+      align-items: center;
     }
     @include tablets {
-      display: flex;
-      flex-direction: column;
+      align-items: center;
     }
   }
   &__add {
@@ -65,7 +66,10 @@
       justify-content: space-between;
     }
     &-child {
+      display: flex;
+      align-items: center;
       padding: 7px 19px;
+      padding-right: 15px;
       border-radius: 15px;
       background-color: #f4f4f4;
       font-size: 13px;
@@ -80,6 +84,9 @@
             margin: 0;
           }
         }
+        & > span {
+          margin-right: 10px;
+        }
       }
     }
   }
@@ -93,7 +100,7 @@
     }
   }
   &__card {
-    &:nth-child(2n-1) {
+    /* &:nth-child(2n-1) {
       grid-area: card-1;
     }
     &:nth-child(2n) {
@@ -104,7 +111,7 @@
     }
     &:nth-child(4n) {
       grid-area: card-4;
-    }
+    } */
     &-info {
       padding: 40px 30px;
     }

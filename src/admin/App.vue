@@ -39,12 +39,10 @@
                         .skills__title
                           input(type="text" placeholder="Название новой группы").input.input_active
                         .skills__btns
-                          .skills__perform
+                          .skills__btn-child.skills__perform
                             button.perform
-                              // img(src="" alt="#")
-                          .skills__delete
+                          .skills__btn-child.skills__delete
                             button.delete
-                              // img(src="" alt="#")
                       .skills__middle
                         ul.skills__list
                       .skills__bottom
@@ -63,12 +61,10 @@
                         .skills__title
                           input(type="text" placeholder="Название новой группы").input.input_active
                         .skills__btns
-                          .skills__perform
+                          .skills__btn-child.skills__perform
                             button.perform
-                              // img(src="" alt="#")
-                          .skills__delete
+                          .skills__btn-child.skills__delete
                             button.delete
-                              // img(src="" alt="#")
                       .skills__middle
                         ul.skills__list
                           li.skills__child
@@ -78,12 +74,10 @@
                               .skills__rate
                                 input( type="text" value="100").input.input__rate
                             .skills__btns
-                              .skills__edit
+                              .skills__btn-child.skills__edit
                                 button.edit
-                                  // img(src="" alt="#")
-                              .skills__remove
+                              .skills__btn-child.skills__remove
                                 button.remove
-                                  // img(src="" alt="#")
                           li.skills__child
                             .skills__info
                               .skills__subtitle
@@ -91,12 +85,10 @@
                               .skills__rate
                                 input( type="text" value="90").input.input__rate
                             .skills__btns
-                              .skills__edit
+                              .skills__btn-child.skills__edit
                                 button.edit
-                                  // img(src="" alt="#")
-                              .skills__remove
+                              .skills__btn-child.skills__remove
                                 button.remove
-                                  // img(src="" alt="#")
                           li.skills__child
                             .skills__info
                               .skills__subtitle
@@ -104,25 +96,21 @@
                               .skills__rate
                                 input( type="text" value="90").input.input__rate
                             .skills__btns
-                              .skills__edit
+                              .skills__btn-child.skills__edit
                                 button.edit
-                                  // img(src="" alt="#")
-                              .skills__remove
+                              .skills__btn-child.skills__remove
                                 button.remove
-                                  // img(src="" alt="#")
                           li.skills__child
                             .skills__info
                               .skills__subtitle
                                 input( type="text" value="Webpack").input
                               .skills__rate
                                 input( type="text" value="90").input.input__rate
-                            .skills__btns
-                              .skills__edit
+                            .skills__btns  
+                              .skills__btn-child.skills__edit
                                 button.edit
-                                  // img(src="" alt="#")
-                              .skills__remove
+                              .skills__btn-child.skills__remove
                                 button.remove
-                                  // img(src="" alt="#")
                       .skills__bottom
                         .skills__new 
                           .skills__new-title
@@ -140,12 +128,10 @@
                           input(type="text" placeholder="Название новой группы").input.input_active
                         .skills__btns
                           .skills__edit
-                          .skills__perform
+                          .skills__btn-child.skills__perform
                             button.perform
-                          //     // img(src="" alt="#")
-                          .skills__delete
+                          .skills__btn-child.skills__delete
                             button.delete
-                          //     // img(src="" alt="#")
                       .skills__middle
                         ul.skills__list
                           li.skills__child
@@ -155,12 +141,10 @@
                               .skills__rate
                                 input( type="text" value="100").input.input__rate
                             .skills__btns
-                              .skills__edit
+                              .skills__btn-child.skills__edit
                                 button.edit
-                                  // img(src="" alt="#")
-                              .skills__remove
+                              .skills__btn-child.skills__remove
                                 button.remove
-                                  // img(src="" alt="#")
                           li.skills__child
                             .skills__info
                               .skills__subtitle
@@ -168,12 +152,10 @@
                               .skills__rate
                                 input( type="text" value="90").input.input__rate
                             .skills__btns
-                              .skills__edit
+                              .skills__btn-child.skills__edit
                                 button.edit
-                                  // img(src="" alt="#")
-                              .skills__remove
+                              .skills__btn-child.skills__remove
                                 button.remove
-                                  // img(src="" alt="#")
                       .skills__bottom
                         .skills__new 
                           .skills__new-title
@@ -214,16 +196,15 @@
                       .work__content-child.work__tags
                         .work__tags-child.work__tags-child_edit
                           span HTML
-                          button.delete-tags
+                          button.delete-light
                         .work__tags-child.work__tags-child_edit
                           span HTML
-                          button.delete-tags
+                          button.delete-light
                         .work__tags-child.work__tags-child_edit
                           span HTML
-                          button.delete-tags
+                          button.delete-light
                 .work__bottom
                   button.btn.btn_transparent Отмена
-                    // img(src="/images/icons/tick.svg")
                   button.btn Сохранить
             .section__list.work__list
               button.section__card.work__card.section__card_add
@@ -250,11 +231,11 @@
                     a(href="") http://loftschool.ru
                   .section__card-btns
                     button.section__card-btn.section__card-edit
-                      | Править
-                      // img.__btn 
+                      span Править
+                      .edit
                     button.section__card-btn.section__card-delete
-                      | Удалить
-                      // img.__btn 
+                      span Удалить
+                      .delete
               .section__card.work__card.work__card_edit
                 .work__card-img
                   img(src="../images/content/work-1.jpg")
@@ -274,11 +255,11 @@
                     a(href="") http://loftschool.ru
                   .section__card-btns
                     button.section__card-btn.section__card-edit
-                      | Править
-                      // img.__btn 
+                      span Править
+                      .edit
                     button.section__card-btn.section__card-delete
-                      | Удалить
-                      // img.__btn 
+                      span Удалить
+                      .delete
               .section__card.work__card.work__card_edit
                 .work__card-img
                   img(src="../images/content/work-1.jpg")
@@ -298,11 +279,11 @@
                     a(href="") http://loftschool.ru
                   .section__card-btns
                     button.section__card-btn.section__card-edit
-                      | Править
-                      // img.__btn 
+                      span Править
+                      .edit
                     button.section__card-btn.section__card-delete
-                      | Удалить
-                      // img.__btn 
+                      span Удалить
+                      .delete
       section.feedback  
         .container
           .section__wrap.feedback__wrap
@@ -350,10 +331,9 @@
                 .section__card-btns
                   button.section__card-btn.section__card-edit
                     | Править
-                    // img.__btn 
                   button.section__card-btn.section__card-delete
-                    | Удалить
-                    // img.__btn 
+                    span Удалить
+                    .delete
               .section__card.feedback__card.feedback__card_edit
                 .feedback__top
                   .feedback__card-user
@@ -370,7 +350,8 @@
                     | Править
                     // img.__btn 
                   button.section__card-btn.section__card-delete
-                    | Удалить
+                    span Удалить
+                    .delete
                     // img.__btn 
               .section__card.feedback__card.feedback__card_edit
                 .feedback__top
@@ -386,11 +367,85 @@
                 .section__card-btns
                   button.section__card-btn.section__card-edit
                     | Править
-                    // img.__btn 
                   button.section__card-btn.section__card-delete
-                    | Удалить
-                    // img.__btn 
+                    span Удалить
+                    .delete
+    .overlay
+      .login
+        .login__wrap
+          .login__close
+            button.close
+          h1.login__title Авторизация
+          .login__form
+            form.form(@submit.prevent="login" novalidate)
+              app-input(
+                title="Логин"
+                icon="login"
+                type="text"
+                v-model="user.name"
+                :errorText="validation.firstError('user.name')"
+              )         
+              app-input(
+                title="Пароль"
+                icon="password"
+                type="password"
+                v-model="user.password"
+                :errorText="validation.firstError('user.password')"
+              )
+              .login__btn
+                input.btn.btn__login(
+                  type='submit'
+                  :disabled="disableSubmit"
+                )    
 </template>
+
+<script>
+import { Validator } from "simple-vue-validator";
+import axios from "axios";
+export default {
+  mixins: [require("simple-vue-validator").mixin],
+  validators: {
+    "user.name": value => {
+      return Validator.value(value).required("Введите имя пользователя");
+    },
+    "user.password": value => {
+      return Validator.value(value).required("Введите пароль");
+    }
+  },
+  data() {
+    return {
+      disableSubmit: false,
+      user: {
+        name: "",
+        password: ""
+      }
+    };
+  },
+  components: {
+    appInput: () => import("./templates/input")
+  },
+  methods: {
+    async login() {
+      if ((await this.$validate()) === false) return;
+      this.disableSubmit = true;
+      try {
+        axios
+          .post("//jsonplaceholder.typicode.com/posts", {
+            name: this.user.name,
+            password: this.user.password
+          })
+          .then(response => {
+            const report = JSON.stringify(response, null, 2);
+            console.log(report);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+};
+</script>
+
 
 <style lang="pcss">
   /* Общие стили */
@@ -406,4 +461,5 @@
   @import "../styles/admin/work.pcss";
   @import "../styles/admin/feedback.pcss";
   @import "../styles/admin/skills.pcss";
+  @import "../styles/admin/login.pcss";
 </style>

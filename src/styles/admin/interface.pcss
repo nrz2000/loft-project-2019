@@ -73,10 +73,15 @@
       align-items: center;
     }
     &-btn {
+      display: flex;
+      align-items: center;
       font-size: 16px;
       font-weight: 600;
       line-height: 30px;
       color: #414c63;
+      & > span {
+        margin-right: 10px
+      }
     }
   }
   &__icon {
@@ -180,6 +185,17 @@ input[type="file"] {
   &__feedback {
     height: 50px;
     border-bottom: 1px solid #414c63;
+  }
+  &__login {
+    padding-left: 45px;
+    height: 50px;
+    border-bottom: 1px solid #414c63;
+    &_login {
+      background: svg-load('user.svg', fill=#414c63, width=26px, height=30px) left center no-repeat;
+    }
+  }
+  &__label {
+    padding-left: 45px;
   }
   &::placeholder {
     font-size: 18px;
@@ -341,6 +357,12 @@ input[type="file"] {
       padding: 0 25px;
     }
   }
+  &__login {
+    width: 100%;
+    height: 80px;
+    border-radius: 40px 5px;
+    background: linear-gradient(to right, #ad00ed 0%, #5500f2 100%);
+  }
 }
 .download {
   &__title {
@@ -373,7 +395,7 @@ input[type="file"] {
   align-items: center;
   width: 20px;
   height: 20px;
-  background: url("/images/icons/tick.svg") center no-repeat;
+  background: svg-load('tick.svg', fill=greenyellow, width=100%, height=100%) center no-repeat;
 }
 .delete {
   display: flex;
@@ -381,7 +403,7 @@ input[type="file"] {
   align-items: center;
   width: 20px;
   height: 20px;
-  background: url("/images/icons/Cross.svg") center no-repeat;
+  background: svg-load('Cross.svg', fill=red, width=100%, height=100%) center no-repeat;
 }
 .edit {
   display: flex;
@@ -389,7 +411,7 @@ input[type="file"] {
   align-items: center;
   width: 20px;
   height: 20px;
-  background: url("/images/icons/pencil.svg") center no-repeat;
+  background: svg-load('pencil.svg', fill=#414c63, width=100%, height=100%) center no-repeat;
 }
 .remove {
   display: flex;
@@ -397,10 +419,98 @@ input[type="file"] {
   align-items: center;
   width: 20px;
   height: 20px;
-  background: url("/images/icons/trash.svg") center no-repeat;
+  background: svg-load('trash.svg', fill=#414c63, width=100%, height=100%) center no-repeat;
+}
+.delete-light {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 11px;
+  height: 11px;
+  background: svg-load('remove.svg', fill=#414c63, width=100%, height=100%) center no-repeat;
 }
 .container {
   @include tablets {
     width: 100%;
+  }
+}
+.close {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    display: inline-block;
+    width: 25px;
+    height: 5px;
+    background: #414c63;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    display: inline-block;
+    width: 25px;
+    height: 5px;
+    background: #414c63;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+}
+.form {
+  &__input {
+    position: relative;
+    &-icon {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 30px;
+      height: 30px;
+      transform: translateY(-50%);
+      &_login {
+        background: svg-load('user.svg', fill=#414c63, width=100%, height=100%) center no-repeat;
+      }
+      &_password {
+        background: svg-load('key.svg', fill=#414c63, width=100%, height=100%) center no-repeat;
+      }
+    }
+  }
+  &__error {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 45px;
+    background: #cd1515;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #ffffff;
+    &:after {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 10px solid transparent;
+    	border-bottom: 10px solid #cd1515;
+    }
+  }
+}
+.error {
+  & input {
+    border-bottom: 1px solid #fb0000;
+  }
+  & .form__error {
+    display: block;
+  }
+  & .form__input-icon_login {
+    background: svg-load('user.svg', fill=#fb0000, width=100%, height=100%) center no-repeat;
+  }
+  & .form__input-icon_password {
+    background: svg-load('key.svg', fill=#fb0000, width=100%, height=100%) center no-repeat;
   }
 }

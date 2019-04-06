@@ -137,16 +137,22 @@ html(lang="en")
                       .form__input
                         input(type="text" id="fullname" name="fullname" required).input
                         +icon('user','form__input-icon')
+                        .form__error
+                          span Какая то ошибка
                     .form__child 
                       label(for="email").input__label Введите ваш email
                       .form__input
                         input(type="text" id="email" name="email" required).input
                         +icon('envelope','form__input-icon')
+                        .form__error
+                          span Какая то ошибка
                     .form__child.form__child_full
                       label(for="message").input__label Сообщение к письму
                       .form__input
                         textarea(type="text" id="message" name="message").input.textarea 
                         +icon('message','form__input-icon')
+                        .form__error
+                          span Какая то ошибка
                   .form__btn
                     input(type="submit" value="Отправить").btn
    
