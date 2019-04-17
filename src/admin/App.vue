@@ -13,13 +13,6 @@
           a(href="#").header__exit Выйти
     section.navigation
       tabs
-      // .container
-      //   .navigation__wrap
-      //     nav.nav
-      //       ul.nav__list
-      //         li.nav__child.nav__child_active Обо мне
-      //         li.nav__child Работы
-      //         li.nav__child Отзывы
     main.main
       router-view
 </template>
@@ -69,13 +62,13 @@
 //     }
 //   }
 // };
-// import { mapState, mapActions, mapGetters } from "vuex";
-// export default {
-//   components: {
-//     appHeader: () => import("components/header"),
-//     tabs: () => import("components/tabs")
-//   }
-// };
+import { mapState, mapActions, mapGetters } from "vuex";
+export default {
+  components: {
+    // appHeader: () => import("components/header"),
+    tabs: () => import("templates/tabs")
+  }
+};
 </script>
 
 

@@ -289,17 +289,28 @@ input[type="submit"] {
     font-size: 16px;
     font-weight: 600;
     margin: 0;
-    padding: 32px 30px;
-    @include tablets {
+    border-bottom: 3px solid transparent;
+    /* @include tablets {
       width: 100%;
       padding: 32px 0px;
       font-size: 14px;
       text-align: center;
-    }
+    } */
     &_active {
       color: #383bcf;
       border-bottom: 3px solid #383bcf;
     }
+  }
+  &__link {
+    display: inline-block;
+    padding: 32px 30px;
+    text-decoration: none;
+  @include tablets {
+    width: 100%;
+    padding: 32px 0px;
+    font-size: 14px;
+    text-align: center;
+  }
   }
 }
 .add {
