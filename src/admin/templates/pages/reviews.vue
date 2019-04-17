@@ -10,9 +10,14 @@
                 span Новый отзыв
               .feedback__area
                 .feedback__user
-                  .feedback__avatar 
-                    img(src="../images/content/fb-1.png").avatar
+                  label.feedback__avatar 
+                    input(type="file" @change="appendFileAndRenderPhoto").feedback__avatar-input
+                  .feedback__avatar-img(
+                    :class="{'filled' : this.renderedPhotoUrl.length}"
+                    :style="{'backgroundImage' : `url(${this.renderedPhotoUrl})`}"
+                  )
                   button.feedback__add Добавить фото
+                  //   img(src="../images/content/fb-1.png").avatar
                 .feedback__content
                   .feedback__content-child.feedback__content-name
                     label(for="project-name").section__label Имя автора
@@ -36,7 +41,7 @@
             .feedback__top
               .feedback__card-user
                 .feedback__card-avatar 
-                  img(src="../images/content/fb-1.png").avatar
+                  img(src="images/content/fb-1.png").avatar
                 .feedback__card-info
                   .feedback__card-name
                     span Владимир Сабанцев
@@ -53,7 +58,7 @@
             .feedback__top
               .feedback__card-user
                 .feedback__card-avatar 
-                  img(src="../images/content/fb-2.png").avatar
+                  img(src="images/content/fb-2.png").avatar
                 .feedback__card-info
                   .feedback__card-name
                     span Владимир Сабанцев
@@ -72,7 +77,7 @@
             .feedback__top
               .feedback__card-user
                 .feedback__card-avatar 
-                  img(src="../images/content/fb-1.png").avatar
+                  img(src="images/content/fb-1.png").avatar
                 .feedback__card-info
                   .feedback__card-name
                     span Владимир Сабанцев
@@ -88,8 +93,37 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
-  
+  components: {
+    appInput: () => import("templates/input.vue"),
+    // appButton: () => import("components/button.vue")
+  },
+  data() {
+    return {
+      renderedPhotoUrl: "",
+      photo: ""
+    }
+  },
+  methods: {
+    appendFileAndRenderPhoto(e) {
+      const file = e.target.files[0];
+      this.photo = file;
+
+      const reader = new FileReader();
+
+      try {
+        reader.readAsDataURL(file)
+        reader.onload = () => [
+          this.renderedPhotoUrl = redaer.result
+        ]
+      } catch(error) {
+        alert('Что-то пошло не так')
+      }
+
+    }
+  }
 }
 </script>
 

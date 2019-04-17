@@ -1,16 +1,23 @@
 <template lang="pug">
   .skills
-    form.form
+    form.form.skills__form
       .skills__wrap
-        .skills__top
+        .skills__top(v-if="editmode === false")
           .skills__title
-            // input(type="text" placeholder="Название новой группы").input.input_active
             h2  {{category.category}}
           .skills__btns
+            .skills__btn-child.skills__edit
+              button.edit(type="button" @click="editmode = true")
+            .skills__btn-child.skills__remove
+              button.remove(type="button")
+        .skills__top(v-else)
+          .skills__title
+            input(type="text" v-model="editedCategory.title").input.input_active
+          .skills__btns
             .skills__btn-child.skills__perform
-              button.perform
+              button.perform(type="button" @click="save")
             .skills__btn-child.skills__delete
-              button.delete
+              button.delete(type='button' @click="editmode = false")
         .skills__middle
           skills-item(
             v-for="skill in skills"
@@ -25,13 +32,13 @@
               input(type="text" v-model="skill.percent" placeholder="100").input.input__rate.input__new
             button.skills__add(
               type="button"
-              @click="addNewSkill")
+              @click="addNewSkill"
             )
-              img(src="../images/content/add.png").plus.plus_large
+              img(src="~/images/content/add.png").plus.plus_large
 </template>
 
 <script>
-import {mapActions} from "vuex;"
+import {mapActions, mapState} from "vuex";
 
 export default {
   props: {
@@ -40,6 +47,8 @@ export default {
   },
   data() {
     return {
+      editmode: false,
+      editedCategory: {...this.category},
       skill: {
         category: this.category.id,
         title: "",
@@ -57,6 +66,15 @@ export default {
         await this.addSkill(this.skill);
       } catch(error) {
         // error
+      }
+    },
+    ...mapActions('categories',['editCategory']),
+    async save() {
+      try {
+        await this.editCategory(this.editedCategory);
+        this.editmode = false;
+      } catch(error) {
+        
       }
     }
   }

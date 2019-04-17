@@ -4,12 +4,12 @@
       .skills__wrap
         .skills__top
           .skills__title
-            input(type="text" v-modal="skillTitle" placeholder="Название новой группы").input.input_active
+            input(type="text" v-model="skillTitle" placeholder="Название новой группы").input.input_active
           .skills__btns
             .skills__btn-child.skills__perform
               button.perform(type="button" @click="addSkillGroup")
             .skills__btn-child.skills__delete
-              button.delete
+              button.delete(type="button")
         // .skills__middle
         //   ul.skills__list
         .skills__bottom
@@ -19,12 +19,17 @@
             .skills__new-rate.skills__rate
               input(type="text" placeholder="100").input.input__rate.input__new
             button.skills__add
-              img(src="../images/content/add.png").plus.plus_large
+              img(src="~/images/content/add.png").plus.plus_large
 </template>
 
+
 <script>
-import {mapActions} from "vuex";
-export default Vue.extend({
+import {mapActions, mapState} from "vuex";
+
+export default {
+  props: {
+    showAddingForm: false
+  },
   data() {
     return {
       skillTitle: ""
@@ -39,8 +44,17 @@ export default Vue.extend({
       } catch(error) {
         alert(error.message)
       }
+    },
+
+  },
+  computed: {
+    reshow() {
+
     }
+  //   // ...mapState('categories', {
+  //   //   showAddingForm: state => state.showAddingForm
+  //   // })
   }
-})
+}
 </script>
 

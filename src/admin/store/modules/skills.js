@@ -5,40 +5,54 @@ export default {
   },
   mutations: {
     SET_SKILLS: (state,skills) => {
-      state.skills = skills
+      state.skills = skills;
     },
     ADD_SKILL: (state, newSkill) => {
       state.skills.push(newSkill);
     },
     REMOVE_SKILL: (state, deletedSkillId) => {
       state.skills = state.skills.filter(skill => skill.id !== deletedSkillId)
+    },
+    EDIT_SKILL: (state, editedSkill) => {
+      state.skills = state.skills.map( 
+        skill => skill.id === editedSkill.id ? editedSkill : skill
+      );
     }
   },
   actions: {
     async addSkill({commit}, skill) {
       try {
-        const response = await $axios.post('/skills', skill);
-        commit('ADD_SKILL', response.data.skill);
+        const response = await this.$axios.post('/skills', skill);
+        commit('ADD_SKILL', response.data);
         return response
-      } catch(eror) {
+      } catch(error) {
         //error handling
       }
     },
     async fetchSkills({commit}, skill) {
       try {
-        const response = await $axios.get('/skills/1', skill);
+        const response = await this.$axios.get('/skills/137', skill);
         commit('SET_SKILLS', response.data)
         return response
-      } catch(eror) {
+      } catch(error) {
         //error handling
       }
     },
-    async removeSkills({commit}, skillId) {
+    async removeSkill({commit}, skillId) {
       try {
-        const response = await $axios.delete(`/skills/${skillId}`);
+        const response = await this.$axios.delete(`/skills/${skillId}`);
         commit('REMOVE_SKILL', skillId)
         return response
-      } catch(eror) {
+      } catch(error) {
+        //error handling
+      }
+    },
+    async editSkill({commit}, skill) {
+      try {
+        const response = await this.$axios.post(`/skills/${skill.id}`, skill);
+        commit('EDIT_SKILL', response.data.skill)
+        return response
+      } catch(error) {
         //error handling
       }
     }

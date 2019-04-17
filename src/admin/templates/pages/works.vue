@@ -49,7 +49,7 @@
               span Добавить работу
           .section__card.work__card.work__card_edit
             .work__card-img
-              img(src="../images/content/work-1.jpg")
+              img(src="images/content/work-1.jpg")
               .work__card-tags.work__tags
                 .work__tags-child 
                   span HTML
@@ -73,7 +73,7 @@
                   .delete
           .section__card.work__card.work__card_edit
             .work__card-img
-              img(src="../images/content/work-1.jpg")
+              img(src="images/content/work-1.jpg")
               .work__card-tags.work__tags
                 .work__tags-child 
                   span HTML
@@ -97,7 +97,7 @@
                   .delete
           .section__card.work__card.work__card_edit
             .work__card-img
-              img(src="../images/content/work-1.jpg")
+              img(src="images/content/work-1.jpg")
               .work__card-tags.work__tags
                 .work__tags-child 
                   span HTML
