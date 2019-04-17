@@ -9,7 +9,7 @@
             .skills__btn-child.skills__edit
               button.edit(type="button" @click="editmode = true")
             .skills__btn-child.skills__remove
-              button.remove(type="button")
+              button.remove( type="button" @click="removeExistedCategory")
         .skills__top(v-else)
           .skills__title
             input(type="text" v-model="editedCategory.title").input.input_active
@@ -68,12 +68,20 @@ export default {
         // error
       }
     },
-    ...mapActions('categories',['editCategory']),
+    ...mapActions('categories',['editCategory','removeCategory']),
     async save() {
       try {
         await this.editCategory(this.editedCategory);
         this.editmode = false;
       } catch(error) {
+        
+      }
+    },
+    async removeExistedCategory() {
+      try {
+        await this.removeCategory(this.category.id)
+        console.log(this.category.id)
+      } catch (error) {
         
       }
     }

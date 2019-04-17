@@ -58,7 +58,7 @@ export default {
     }),
     ...mapState('skills', {
       skills: state => state.skills
-    }),
+    })
     // ...mapState('categories', {
     //   showAddingForm: state => state.showAddingForm
     // }),

@@ -8,6 +8,11 @@ export default {
     SET_CATEGORIES: (state, categories) => {
       state.categories = categories;
     },
+    REMOVE_CATEGORY: (state, deletedCategoryId) => {
+      state.categories = state.categories.filter( category => 
+        category.id !== deletedCategoryId  
+      )
+    },
     EDIT_CATEGORY: (state, editedCategory) => {
       state.categories = state.categories.map(
         category => category.id === editedCategory.id ? editedCategory : category
@@ -50,10 +55,9 @@ export default {
       }
     },
     async removeCategory({ commit }, categoryId) {
-      console.log(category);
       try {
-        const response = await this.$axios.delete(`/categories/${category.id}`);
-        commit('EDIT_CATEGORY', response.data.category);
+        const response = await this.$axios.delete(`/categories/${categoryId}`);
+        commit('REMOVE_CATEGORY', categoryId);
         console.log(response.data.category );
         return response;
       } catch(error) {
