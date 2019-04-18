@@ -20,7 +20,7 @@ new Vue({
     next() {
       this.$refs.flickity.next();
     },
-
+    
     previous() {
       this.$refs.flickity.previous();
     }

@@ -13,6 +13,11 @@ const thumbs = {
     works: Array,
     currentWork: Object
   }
+  // computed: {
+  //   active() {
+  //     this.works
+  //   }
+  // }
 };
 
 const display = {
@@ -24,11 +29,6 @@ const display = {
     works: Array,
     currentWork: Object,
     currentIndex: Number
-  },
-  computed: {
-    copyWorks() {
-      const works = [...this.works];
-    }
   }
 };
 
