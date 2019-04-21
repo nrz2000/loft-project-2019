@@ -3,7 +3,7 @@
     .login
       .login__wrap
         .login__close
-          button.close
+          button.close(@click.prevent="back")
         h1.login__title Авторизация
         .login__form
           form.form(@submit.prevent="login" novalidate)
@@ -56,6 +56,12 @@ export default {
     }
   },
   methods: {
+    async back() {
+      try {
+        location.href = "/";
+      } catch (error) {
+      }
+    },
     async login() {
       if ((await this.$validate()) === false) return;
       this.disableSubmit = true;

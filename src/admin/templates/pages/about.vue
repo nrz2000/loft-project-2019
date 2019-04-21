@@ -16,7 +16,7 @@
         .about__bottom
           .about__card(v-if="showAddingForm")
             skills-add(
-              :showAddingForm="showAddingForm"
+              @close="close"
             )
           .about__card(
             v-for= "category in categories"
@@ -41,7 +41,6 @@ export default {
       showAddingForm: false,
       category: {
         title: ""
-        
       }
     }
   },
@@ -50,6 +49,10 @@ export default {
     ...mapActions('skills',['fetchSkills']),
     filterSkillsByCategoryId(categoryId) {
       return this.skills.filter(skill => skill.category === categoryId);
+    },
+    close() {
+      this.showAddingForm = false;
+      this.title = "";
     }
   },
   computed: {
@@ -59,9 +62,6 @@ export default {
     ...mapState('skills', {
       skills: state => state.skills
     })
-    // ...mapState('categories', {
-    //   showAddingForm: state => state.showAddingForm
-    // }),
   },
   async created() {
     try {
@@ -81,4 +81,3 @@ export default {
 <style lang="scss">
 
 </style>
-

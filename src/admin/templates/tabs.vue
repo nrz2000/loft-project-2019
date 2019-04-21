@@ -7,15 +7,10 @@
             v-for="tab in tabs" 
             tag="li"
             :to="tab.href"
+            :key="tab.id"
             exact-active-class="nav__child_active"
           ).nav__child
             a.nav__link {{ tab.title }}
-            // router-link(
-            //   :to="tab.href"
-            //   exact-active-class="nav__child_active"
-            // ).nav__link {{ tab.title }}
-          // li.nav__child Работы
-          // li.nav__child Отзывы
 </template>
 
 <script>

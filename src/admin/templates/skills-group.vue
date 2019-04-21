@@ -64,6 +64,8 @@ export default {
     async addNewSkill() {
       try {
         await this.addSkill(this.skill);
+        this.skill.title = "";
+        this.skill.percent = "";
       } catch(error) {
         // error
       }
@@ -80,7 +82,6 @@ export default {
     async removeExistedCategory() {
       try {
         await this.removeCategory(this.category.id)
-        console.log(this.category.id)
       } catch (error) {
         
       }

@@ -13,11 +13,6 @@ const thumbs = {
     works: Array,
     currentWork: Object
   }
-  // computed: {
-  //   active() {
-  //     this.works
-  //   }
-  // }
 };
 
 const display = {

@@ -65,7 +65,6 @@
 import { mapState, mapActions, mapGetters } from "vuex";
 export default {
   components: {
-    // appHeader: () => import("components/header"),
     tabs: () => import("templates/tabs")
   }
 };

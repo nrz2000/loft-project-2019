@@ -17,6 +17,9 @@ export default {
       state.categories = state.categories.map(
         category => category.id === editedCategory.id ? editedCategory : category
       )
+    },
+    ADD_CATEGORIES: (state, newCategory) => {
+      state.categories.unshift(newCategory);
     }
   },
   actions: {
@@ -31,11 +34,12 @@ export default {
         );
       }
     },
-    async addNewSkillGroup( state , groupTitle) {
+    async addNewSkillGroup( {commit} , groupTitle) {
       try {
         const response =  await this.$axios.post('/categories', {
           title: groupTitle
         });
+        commit("ADD_CATEGORIES", response.data);
         return response;
       } catch(error) {
         throw new Error(
@@ -45,7 +49,7 @@ export default {
     },
     async fetchCategories({ commit }) {
       try {
-        const response = await this.$axios.get('/categories');
+        const response = await this.$axios.get('/categories/');
         commit('SET_CATEGORIES', response.data.reverse());
         return response;
       } catch(error) {
@@ -58,7 +62,6 @@ export default {
       try {
         const response = await this.$axios.delete(`/categories/${categoryId}`);
         commit('REMOVE_CATEGORY', categoryId);
-        console.log(response.data.category );
         return response;
       } catch(error) {
         throw new Error(

@@ -9,9 +9,7 @@
             .skills__btn-child.skills__perform
               button.perform(type="button" @click="addSkillGroup")
             .skills__btn-child.skills__delete
-              button.delete(type="button")
-        // .skills__middle
-        //   ul.skills__list
+              button.delete(type="button" @click="$emit('close')")
         .skills__bottom
           .skills__new 
             .skills__new-title
@@ -27,9 +25,6 @@
 import {mapActions, mapState} from "vuex";
 
 export default {
-  props: {
-    showAddingForm: false
-  },
   data() {
     return {
       skillTitle: ""
@@ -41,20 +36,12 @@ export default {
       try {
         await this.addNewSkillGroup(this.skillTitle);
         this.skillTitle = "";
+        this.$emit('close');
       } catch(error) {
         alert(error.message)
       }
-    },
-
-  },
-  computed: {
-    reshow() {
-
     }
-  //   // ...mapState('categories', {
-  //   //   showAddingForm: state => state.showAddingForm
-  //   // })
-  }
+  },
 }
 </script>
 
