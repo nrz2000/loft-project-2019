@@ -381,6 +381,8 @@ input[type="submit"] {
   }
 }
 .download {
+  text-align: center;
+  width: 100%;
   &__title {
     width: 50%;
     font-size: 16px;
@@ -400,6 +402,13 @@ input[type="submit"] {
     height: 270px;
     border: 1px dashed #a1a1a1;
     background-color: #dee4ed;
+    &_active {
+      border: none;
+      & .download__title,
+      & .download__btn {
+        display: none
+      }
+    }
   }
   &__btn {
     margin-top: 30px;
