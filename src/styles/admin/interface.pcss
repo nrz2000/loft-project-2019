@@ -30,16 +30,21 @@
     box-shadow: 4px 3px 20px rgba(0, 0, 0, 0.07);
   }
   &__edit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
     &-title {
       font-size: 18px;
       font-weight: 700;
       line-height: 34px;
       color: #414c63;
       padding-bottom: 25px;
-      border-bottom: 1px solid #dddee0;
     }
   }
   &__label {
+    
     font-size: 16px;
     font-weight: 600;
     line-height: 30px;
@@ -381,6 +386,10 @@ input[type="submit"] {
   }
 }
 .download {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   text-align: center;
   width: 100%;
   &__title {
@@ -404,6 +413,8 @@ input[type="submit"] {
     background-color: #dee4ed;
     &_active {
       border: none;
+      width: 100%;
+      background-size: contain;
       & .download__title,
       & .download__btn {
         display: none
@@ -522,6 +533,15 @@ input[type="submit"] {
       transform: translateX(-50%);
       border: 10px solid transparent;
     	border-bottom: 10px solid #cd1515;
+    }
+  }
+  &__bottom {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-end;
+    @include desktop {
+      justify-content: center;
     }
   }
 }

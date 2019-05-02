@@ -3,18 +3,22 @@
     :class="{'error' : !!errorText}"
   )   
     label(:for="icon").input__label.section__label(v-if="title") {{title}}
-    .form__input
-      input(:type="type" :id="icon" name="fullname" required).input.input__login(
-        v-bind="$attrs"
-        :value="value"
-        @input="$emit('input', $event.target.value)"
-      )
-      .form__input-icon(
-        :class="`form__input-icon_${icon}`"
-      )
-      errors-tooltip(
-        :errorText="errorText"
-      )
+      .form__input
+        input.input.input__login(
+          :type="type" 
+          :id="icon"
+          v-bind="$attrs"
+          :value="value"
+          @input="$emit('input', $event.target.value)"
+          name="fullname"
+          required
+        )
+        .form__input-icon(
+          :class="`form__input-icon_${icon}`"
+        )
+        errors-tooltip(
+          :errorText="errorText"
+        )
 </template>
 
 <script>

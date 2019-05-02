@@ -5,7 +5,9 @@
     )
       template(slot="content")
         slot(name="form-content")
-        .work__bottom
+        .form__bottom(
+          :style="{'width': bottomWidth}"
+        )
           button.btn.btn_transparent(type="button" @click="$emit('cancel')") Отмена
           button.btn(type="button" @click="$emit('submit')") Сохранить
 </template>
@@ -16,6 +18,10 @@ export default {
     title: {
       type: String,
       default: "Форма добавления элемента"
+    },
+    bottomWidth: {
+      type: String,
+      default: '100%'
     }
   },
   components: {

@@ -1,11 +1,11 @@
 <template lang="pug">
-  .work__edit(v-if="plain")
+  .section__edit(v-if="plain")
     slot(name="default")
 
-  .work__edit(v-else)
-    .section__edit-title.work__edit-title 
+  .section__edit(v-else)
+    .section__edit-title
       span(v-text="title")
-        slot(name="title" v-if="!!title === false")
+      slot(v-if="!!this.title === false" name="title")
     slot(name="content")
 </template>
 

@@ -5,10 +5,10 @@
         h2.section__title.work__title Блок "Работы" 
         .section__form.work__form(
           v-if="showWork"
-          :mode="mode"
         )
           work-add(
             @closeWork="showWork = false"
+            :mode="mode"
           )
         .section__list.work__list
           button(@click="createWork").section__card.work__card.section__card_add

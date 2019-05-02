@@ -18,6 +18,11 @@ export default {
     },
     SET_CURRENT_WORK: (state, updatedWorkId) => {
       state.currentWork = state.works.filter(work => work.id === updatedWorkId)[0];
+    },
+    EDIT_WORK: (state, updatedWork) => {
+      state.works = state.works.map(work => 
+        work.id === updatedWork.id ? updatedWork : work  
+      )
     }
   },
   actions: {
@@ -28,7 +33,6 @@ export default {
         commit("ADD_WORK", response.data);
         return response;
       } catch(error) {
-
       }
     },
     async fetchWorks({commit}) {
@@ -47,6 +51,16 @@ export default {
         return response; 
       } catch (error) {
         alert('Ошибка при удалении Работы')
+      }
+    },
+    async updateWork({commit}, work) {
+      const data = wrapIntoFormData(work);
+      try {
+        const response = await this.$axios.post(`/works/${work.id}`, data);
+        commit('EDIT_WORK', response.data.work);
+        return response;
+      } catch (error) {
+        
       }
     }
   }

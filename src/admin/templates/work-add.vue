@@ -8,25 +8,35 @@
     template(slot="form-content")
       .work__area
         .work__loader
-          label(for="loader").download
+          label(
+            for="loader"
+            :class="{'error' : validation.hasError('work.photo')}"
+          ).download
             input(type="file" @change="appendFileAndRenderPhoto" id="loader" name="loader")
             .download__label(
-                v-if="this.renderedPhotoUrl.length"
                 :class="{'download__label_active' : this.renderedPhotoUrl.length}"
                 :style="{'backgroundImage': workPhotoUrl}"
               )
               .download__title Перетащите или загрузите для загрузки изображения
               .btn.btn_small.download__btn Загрузить
             .work__add Изменить превью
+            .download__error
+              errors-tooltip
         .work__content
           .work__content-child.work__content-title
-            label(for="project-name").section__label Название
-            input(
-              type="text" 
-              id="project-name" 
-              placeholder="Название сайта"
+            app-input(
+              title="Название"
               v-model="work.title"
-            ).input.input__line
+              :errorText="validation.firstError('work.title')"
+            )
+            //- label(for="project-name").section__label Название
+            //- input(
+            //-   type="text" 
+            //-   id="project-name" 
+            //-   placeholder="Название сайта"
+            //-   v-model="work.title"
+            //-   :errorText="validation.firstError('work.title')"
+            //- ).input.input__line
           .work__content-child.work__content-link
             label(for="project-link").section__label Ссылка 
             input(
@@ -43,22 +53,36 @@
               placeholder="Описание сайта"
               v-model="work.description"
             ).textarea.textarea__work
-          .work__content-child.work__content-tags
-            label(for="project-tags").section__label Добавление тэга
-            input(
-              type="text"
-              id="project-tags"
-              placeholder="Теги через запятую"
-              v-model="work.techs"
-            ).input.input__line
-          .work__content-child
-            //- tags()
+          add-tags(
+            v-model="work.techs"
+            @removeTag="value => this.work.techs = value"
+          )
+            
 </template>
 
 <script>
 import { mapActions, mapState } from "vuex";
 import { rendered, getAbsoluteImgPath } from "@/helpers/pictures";
+import { Validator } from "simple-vue-validator";
 export default {
+  mixins: [require("simple-vue-validator").mixin],
+  validators: {
+    "work.title": value => {
+      return Validator.value(value).required('Заполните название')
+    },
+    "work.techs": value => {
+      return Validator.value(value).required("Заполните технологии")
+    },
+    "work.link": value => {
+      return Validator.value(value).required("Заполните ссылку");
+    },
+    "work.description": value => {
+      return Validator.value(value).required("Заполните описание");
+    },
+    "work.photo": value => {
+      return Validator.value(value).required("Вставьте файл");
+    }
+  },
   props: {
     mode: {
       type: String,
@@ -71,7 +95,10 @@ export default {
   },
   components: {
     addingForm: () => import("templates/adding-form.vue"),
-    tags: () => import("templates/tags.vue")
+    tags: () => import("templates/tags.vue"),
+    addTags: () => import("templates/add-tags.vue"),
+    errorsTooltip: () => import("templates/errors-tooltip.vue"),
+    appInput: () => import("templates/input.vue")
   },
   data() {
     return {
@@ -92,7 +119,7 @@ export default {
       currentWork: state => state.currentWork
     }),
     workPhotoUrl() {
-      return url($(this.renderedPhotoUrl));
+      return `url(${this.renderedPhotoUrl})`;
     },
     editFormTitle() {
       switch (this.mode) {
@@ -121,9 +148,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions("works",["addWork, updateWork"]),
+    ...mapActions("works",["addWork", "updateWork"]),
+    ...mapActions('tooltips','showTooltip'),
     async addNewWork() {
-      this.disableForm = true;
+      if ((await this.$validate()) === false) return;
       try {
         const response = await this.addWork(this.work);
 
@@ -160,10 +188,9 @@ export default {
     async editWork() {
       try {
         const response = await this.updateWork(this.work);
-        console.log(this.work);
         this.$emit('closeWork');
       } catch (error) {
-        
+        alert("Ошибка при редактировании Работы")
       }
     },
     fillFormWithCurrentWorkData()  {

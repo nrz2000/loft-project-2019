@@ -1,5 +1,6 @@
 .work {
   &__area {
+    width: 100%;
     margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -15,6 +16,11 @@
     @include tablets {
       padding: 0;
       grid-gap: 40px 0;
+    }
+  }
+  &__edit {
+    &_title {
+      border-bottom: 1px solid #dddee0;
     }
   }
   &__loader {
@@ -90,28 +96,7 @@
       }
     }
   }
-  &__bottom {
-    width: 100%;
-    margin-top: 50px;
-    display: flex;
-    justify-content: flex-end;
-    @include desktop {
-      justify-content: center;
-    }
-  }
   &__card {
-    /* &:nth-child(2n-1) {
-      grid-area: card-1;
-    }
-    &:nth-child(2n) {
-      grid-area: card-2;
-    }
-    &:nth-child(3n) {
-      grid-area: card-3;
-    }
-    &:nth-child(4n) {
-      grid-area: card-4;
-    } */
     &-info {
       padding: 40px 30px;
     }

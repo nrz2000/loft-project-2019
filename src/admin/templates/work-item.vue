@@ -46,6 +46,7 @@ export default {
     ...mapActions('works',['removeWork']),
     ...mapMutations('works',['SET_CURRENT_WORK']),
     async removeExistedWork() {
+      if (confirm("Удалить работу?") === false) return;
       try {
         await this.removeWork(this.work.id);
       } catch (error) {

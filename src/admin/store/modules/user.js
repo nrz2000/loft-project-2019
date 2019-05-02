@@ -6,6 +6,9 @@ export default {
   mutations: {
     SET_USER: (state, user) => {
       state.user = user
+    },
+    CLEAR_USER: state => {
+      state.user = {};
     }
   },
   getters: {
@@ -14,6 +17,15 @@ export default {
       const userObjectIsEmpty = 
         Object.keys(userObj).length === 0 && userObj.constructor === Object;
       return userObjectIsEmpty === false;
+    }
+  },
+  actions: {
+    async logout ({ commit }) {
+      const response = await this.$axios.post('/logout');
+      commit('CLEAR_USER');
+      location.href = '/';
+      localStorage.removeToken('token');
+      return response;
     }
   }
 }

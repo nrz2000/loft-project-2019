@@ -6,7 +6,7 @@
         :key="tag.index"
       )
         span {{tag}}
-        button.delete-light
+        button.delete-light(type="button" @click="$emit('remove', index)")
     template(v-else)
       .work__tags-child( v-for="(tag, index) in tags"
         :key="tag.index"
