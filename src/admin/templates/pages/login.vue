@@ -50,8 +50,8 @@ export default {
     return {
       disableSubmit: false,
       user: {
-        name: "kit032019",
-        password: "polina19"
+        name: "",
+        password: ""
       }
     }
   },
