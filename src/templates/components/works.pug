@@ -1,36 +1,47 @@
 script(type="text/x-template")#slider-container
-  .slider-work
+  .slider-work(v-if="render")
     display(
       :works="works"
       :currentWork="currentWork"
       :currentIndex="currentIndex"
       @slide="handleSlide"
+      @change="handleChangeIndex"
     )
     info(
       :currentWork="currentWork"
     )
 
 script(type="text/x-template")#slider-display
-  //- pre {{ currentWork }}
   .slider-work__left
     .slider-work__main
-      img(:key="currentWork.id" :src="currentWork.photo" :alt="currentWork.title").slider-work__img
+      img(
+        v-for="work in works"
+        :key="work.id"
+        :src="work.photo" 
+        :alt="work.title"
+        :class="{'slider-work__img_active': currentWork.id === work.id}"
+      ).slider-work__img
       .slider-work__main-number {{currentIndex + 1}}
       thumbs(
         :works="works"
         :currentWork="currentWork"
         @slide="direction => $emit('slide', direction)"
+        @changeIndex="index => $emit('change', index)"
       )
       
       
 script(type="text/x-template")#slider-thumbs
   .slider-work__status
-    button.slider-work__status-child( 
-      v-for="work in works" :key="work.id" :class="{'slider-work__status-child_active': currentWork.id === work.id}"
-    )
-
-      img(:src="work.photo").slider-work__preview
+    transition-group(name="slide" tag="div").slider-work__status-wrap
+      button.slider-work__status-child( 
+        v-for="(work, ndx) in works"
+        :key="work.id" 
+        :class="{'slider-work__status-child_active': currentWork.id === work.id}"
+        @click="$emit('changeIndex',ndx)"
+      )
+        img(:src="work.photo").slider-work__preview
     btns(
+      :currentWork="currentWork"
       @slide="direction => $emit('slide', direction)"
     )
 
@@ -44,7 +55,6 @@ script(type="text/x-template")#slider-info
   .slider-work__right
     .slider-work__info
       tags(
-        :key="currentWork.id"
         :tagsArray="tagsArray"
       )
       span.slider-work__info-title {{currentWork.title}}
@@ -56,4 +66,6 @@ script(type="text/x-template")#slider-info
 
 script(type="text/x-templates")#slider-tags
   .slider-work__tool
-    span.slider-work__tool-child(v-for="tag in tagsArray") {{tag}}
+    span.slider-work__tool-child(
+      v-for="tag in tagsArray"
+    ) {{tag}}

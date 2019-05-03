@@ -9,7 +9,7 @@ const btns = {
   props: {
     works: Array,
     currentWork: Object,
-    currentIndex: Number,
+    currentIndex: Number
   }
 
 };
@@ -21,7 +21,8 @@ const thumbs = {
   },
   props: {
     works: Array,
-    currentWork: Object
+    currentWork: Object,
+    currentIndex: Number
   }
 };
 
@@ -40,6 +41,7 @@ const display = {
 const tags = {
   template: "#slider-tags",
   props: {
+    currentWork: Object,
     tagsArray: Array
   }
 };
@@ -69,12 +71,13 @@ new Vue ({
   data() {
     return {
       works: [],
-      currentIndex: 0
+      currentIndex: 0,
+      render: false
     };
   },
   computed: {
     currentWork() {
-      return this.works[this.currentIndex];
+      return this.works[0];
     }
   },
   watch: {
@@ -92,17 +95,26 @@ new Vue ({
       return data.map((item,index) => {
         const requiredPic = (`https://webdev-api.loftschool.com/${item.photo}`);
         item.photo = requiredPic;
-        // item.index = index;
+        item.index = index;
 
         return item;
       })
     },
+     handleChangeIndex(index) {
+       const arr = this.works.splice(0, index);
+       this.works = [...this.works, ...arr];
+     },
     handleSlide(direction) {
       switch (direction) {
         case "next" :
+          this.works.push(this.works[0]);
+          this.works.shift()
           this.currentIndex++;
           break;
         case "prev" :
+          const lastItem = this.works[this.works.length - 1];
+          this.works.unshift(lastItem);
+          this.works.pop();
           this.currentIndex--;
           break;
       }
