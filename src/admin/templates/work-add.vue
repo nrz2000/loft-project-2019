@@ -9,10 +9,9 @@
       .work__area
         .work__loader
           label(
-            for="loader"
             :class="{'error' : validation.hasError('work.photo')}"
           ).download
-            input(type="file" @change="appendFileAndRenderPhoto" id="loader" name="loader")
+            input(type="file" @change="appendFileAndRenderPhoto" name="loader")
             .download__label(
                 :class="{'download__label_active' : this.renderedPhotoUrl.length}"
                 :style="{'backgroundImage': workPhotoUrl}"
@@ -20,42 +19,40 @@
               .download__title Перетащите или загрузите для загрузки изображения
               .btn.btn_small.download__btn Загрузить
             .work__add Изменить превью
-            .download__error
-              errors-tooltip
+            errors-tooltip(
+              :errorText="validation.firstError('work.photo')"
+            )
         .work__content
           .work__content-child.work__content-title
             app-input(
               title="Название"
               v-model="work.title"
               :errorText="validation.firstError('work.title')"
+              nopadding=true
+              fieldType="input"
             )
-            //- label(for="project-name").section__label Название
-            //- input(
-            //-   type="text" 
-            //-   id="project-name" 
-            //-   placeholder="Название сайта"
-            //-   v-model="work.title"
-            //-   :errorText="validation.firstError('work.title')"
-            //- ).input.input__line
           .work__content-child.work__content-link
-            label(for="project-link").section__label Ссылка 
-            input(
+            app-input(
+              title="Ссылка"
               type="text"
-              id="project-link"
-              placeholder="Ссылка на сайт"
               v-model="work.link"
-            ).input.input__line
+              :errorText="validation.firstError('work.link')"
+              nopadding=true
+              fieldType="input"
+            )
           .work__content-child.work__content-descr
-            label(for="project-descr").section__label Описание 
-            textarea(
+            app-input(
+              title="Описание"
               type="text"
-              id="project-descr"
-              placeholder="Описание сайта"
               v-model="work.description"
-            ).textarea.textarea__work
+              :errorText="validation.firstError('work.description')"
+              fieldType="textarea"
+              heightTextarea="150px"
+            )
           add-tags(
             v-model="work.techs"
             @removeTag="value => this.work.techs = value"
+            :errorText="validation.firstError('work.techs')"
           )
             
 </template>
@@ -68,10 +65,10 @@ export default {
   mixins: [require("simple-vue-validator").mixin],
   validators: {
     "work.title": value => {
-      return Validator.value(value).required('Заполните название')
+      return Validator.value(value).required('Заполните название');
     },
     "work.techs": value => {
-      return Validator.value(value).required("Заполните технологии")
+      return Validator.value(value).required("Заполните технологии");
     },
     "work.link": value => {
       return Validator.value(value).required("Заполните ссылку");
@@ -149,20 +146,22 @@ export default {
   },
   methods: {
     ...mapActions("works",["addWork", "updateWork"]),
-    ...mapActions('tooltips','showTooltip'),
+    ...mapActions('tooltips',['showTooltip']),
     async addNewWork() {
-      if ((await this.$validate()) === false) return;
       try {
         const response = await this.addWork(this.work);
 
         this.clearFormFields();
       
-        // this.showTooltip({
-        //   text: "Добавлена Работа",
-        //   type: "success"
-        // });
+        this.showTooltip({
+          type: "success",
+          text: "Добавлена работа"
+        });
       } catch (error) {
-        alert('Работа не загружена');
+        this.showTooltip({
+          type: "error",
+          text: "Ошибка добавления"
+        })
       }
     },
     cancelAdding() {
@@ -181,16 +180,30 @@ export default {
       try {
         const renderedResult = await rendered(file);
         this.renderedPhotoUrl = renderedResult;
+        this.showTooltip({
+          type: 'success',
+          text: "Фото загружено"
+        })
       } catch (error) {
-        alert('Фото не загрузилось')
+        this.showTooltip({
+          type: "error",
+          text: "Ошибка обработки фото"
+        })
       }
     },
     async editWork() {
       try {
         const response = await this.updateWork(this.work);
         this.$emit('closeWork');
+        this.showTooltip({
+          type: 'success',
+          text: "Работа отредактирована"
+        })
       } catch (error) {
-        alert("Ошибка при редактировании Работы")
+        this.showTooltip({
+          type: "error",
+          text: "Ошибка редактирования"
+        })
       }
     },
     fillFormWithCurrentWorkData()  {

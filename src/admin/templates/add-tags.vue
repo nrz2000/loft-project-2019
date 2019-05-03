@@ -1,29 +1,30 @@
 <template lang="pug">
   .work__content-child.work__content-tags
-    label(for="project-tags").section__label Добавление тэга
-    //- pre {{ value }}
-    input(
+    app-input(
+      title="Добавление тега"
       type="text"
-      id="project-tags"
       :value="tags"
-      @input="handleInput"
       placeholder="Теги через запятую"
-    ).input.input__line
-    .work__content-child
-      tags(
-        :tags="tagsArray"
-        :interactive="true"
-        @remove="removeTag"
-      )
+      :errorText="errorText"
+      @input="handleInput"
+      nopadding=true
+    )
+    tags(
+      :tags="tagsArray"
+      :interactive="true"
+      @remove="removeTag"
+    )
 </template>
 
 <script>
 export default {
   props: {
-    value: String
+    value: String,
+    errorText: String
   },
   components: {
-    tags: () => import("templates/tags.vue")
+    tags: () => import("templates/tags.vue"),
+    appInput: () => import("templates/input.vue")
   },
   data() {
     return {
@@ -46,7 +47,7 @@ export default {
   },
   methods: {
     handleInput($event) {
-      this.$emit("input", $event.target.value);
+      this.$emit("input", $event);
       this.tags = $event;
     },
     removeTag(index) {

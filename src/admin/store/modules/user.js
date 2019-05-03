@@ -24,7 +24,7 @@ export default {
       const response = await this.$axios.post('/logout');
       commit('CLEAR_USER');
       location.href = '/';
-      localStorage.removeToken('token');
+      // localStorage.removeToken('token');
       return response;
     }
   }

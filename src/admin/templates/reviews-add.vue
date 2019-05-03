@@ -8,45 +8,66 @@
     template(slot="form-content")
       .feedback__area
         .feedback__user
-          label.download
+          label.download(
+            :class="{'error' : validation.hasError('review.photo')}"
+          )
             input(type="file" @change="appendFileAndRenderPhoto").feedback__avatar-input
             .feedback__avatar-img(
               :class="{'feedback__avatar-img_active' : this.renderedAvatarUrl.length}"
               :style="{'backgroundImage' : userAvatarUrl }"
             )
             .feedback__add Добавить фото
+            errors-tooltip(
+              :errorText="validation.firstError('review.photo')"
+            )
         .feedback__content
           .feedback__content-child.feedback__content-name
-            label(for="review-name").section__label Имя автора
-            input(
-              type="text" 
-              id="review-name" 
-              placeholder=""
+            app-input(
+              title="Имя автора"
               v-model="review.author"
-            ).input.input__line
+              fieldType="input"
+              nopadding=true
+              :errorText="validation.firstError('review.author')"
+            )
           .feedback__content-child.feedback__content-post
-            label(for="review-post").section__label Титул автора
-            input(
-              type="text" 
-              id="review-post" 
-              placeholder=""
+            app-input(
+              title="Титул автора"
               v-model="review.occ"
-            ).input.input__line
+              fieldType="input"
+              nopadding=true
+              :errorText="validation.firstError('review.occ')"
+            )
           .feedback__content-child.feedback__content-descr
-            label(for="review-descr").section__label Отзыв
-            textarea(
-              type="text"
-              id="review-descr"
-              placeholder=""
-              v-model='review.text'
-            ).textarea.textarea__feedback
-
+            app-input(
+              title="Отзыв"
+              v-model="review.text"
+              fieldType="textarea"
+              nopadding=true
+              :errorText="validation.firstError('review.text')"
+            )
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
 import { rendered, getAbsoluteImgPath } from "@/helpers/pictures";
+import { Validator } from "simple-vue-validator";
+
 export default {
+  mixins: [require("simple-vue-validator").mixin],
+  validators: {
+    "review.author": value => {
+      return Validator.value(value).required('Заполните имя')
+    },
+    "review.occ": value => {
+      return Validator.value(value).required("Заполните титул")
+    },
+    "review.text": value => {
+      return Validator.value(value).required("Заполните отзыв");
+    },
+    "review.photo": value => {
+      return Validator.value(value).required("Вставьте аватар");
+    }
+  },
   props: {
     title: {
       type: String,
@@ -55,13 +76,20 @@ export default {
     mode: {
       type: String,
       default: "add"
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
-    addingForm: () => import("templates/adding-form.vue")
+    addingForm: () => import("templates/adding-form.vue"),
+    appInput: () => import("templates/input.vue"),
+    errorsTooltip: () => import("templates/errors-tooltip.vue"),
   },
   data() {
     return {
+      disabledForm: this.disabled,
       renderedAvatarUrl: "",
       review: {
         id: 0,
@@ -84,19 +112,31 @@ export default {
     clearFormFields() {
       this.review = {};
       this.renderedAvatarUrl = "";
+      this.validation.reset();
     },
     cancelAdding() {
       this.clearFormFields();
       this.$emit("cancel");
     },
     ...mapActions("reviews",['addReview','updateReview']),
+    ...mapActions('tooltips',['showTooltip']),
     async addNewReview() {
+      this.disableForm = true;
       try {
         const response = await this.addReview(this.review);
 
         this.clearFormFields();
+        this.showTooltip({
+          type: "success",
+          text: "Добавлен отзыв"
+        })
       } catch (error) {
-        
+        this.showTooltip({
+          type: "error",
+          text: error.message
+        })
+      } finally {
+        this.validation.reset();
       }
     },
     async appendFileAndRenderPhoto(e) {
@@ -107,16 +147,30 @@ export default {
       try {
         const renderedResult = await rendered(file);
         this.renderedAvatarUrl = renderedResult;
+        this.showTooltip({
+          type: "success",
+          text: "Фото загружено"
+        })
       } catch (error) {
-        alert('Фото не загрузилось')
+        this.showTooltip({
+          type: "error",
+          text: "Ошибка обработки фото"
+        })
       }
     },
     async editReview() {
       try {
         const response = await this.updateReview(this.review);
         this.$emit('cancel');
+        this.showTooltip({
+          type: "success",
+          text: "Отзыв отредактирован"
+        })
       } catch (error) {
-        alert('Ошибка при редактировании работы');
+        this.showTooltip({
+          type: "error",
+          text: "Ошибка редактирования"
+        })
       }
     },
     fillFormWithCurrentWorkData() {

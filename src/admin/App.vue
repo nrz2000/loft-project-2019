@@ -15,16 +15,36 @@
       tabs
     main.main
       router-view
+    tooltips(:class="{'showed':showed}")
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   components: {
-    tabs: () => import("templates/tabs")
+    tabs: () => import("templates/tabs.vue"),
+    tooltips: () => import("templates/tooltips.vue")
+  },
+  computed: {
+    ...mapState('tooltips',{
+      showed: state => state.showed
+    })
   },
   methods: {
-    ...mapActions('user',["logout"])
+    ...mapActions('user',["logout"]),
+    ...mapActions('tooltips',['closeTooltip'])
+  },
+  watch: {
+    showed(value) {
+      if(value === true) {
+        let timeout;
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+          this.closeTooltip();
+        }, 5000)
+      }
+    }
   }
 };
 </script>

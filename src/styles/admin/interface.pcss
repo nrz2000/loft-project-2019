@@ -35,6 +35,7 @@
     align-items: flex-start;
     justify-content: space-between;
     height: 100%;
+    width: 100%;
     &-title {
       font-size: 18px;
       font-weight: 700;
@@ -44,7 +45,7 @@
     }
   }
   &__label {
-    
+    display: block;
     font-size: 16px;
     font-weight: 600;
     line-height: 30px;
@@ -173,12 +174,14 @@ input[type="submit"] {
 .input {
   background: transparent;
   border: none;
-  padding: none;
+  padding: 0;
   width: 100%;
   font-size: 18px;
   font-weight: 600;
   line-height: 34px;
   color: #414c63;
+  height: 50px;
+  border-bottom: 1px solid #414c63;
   @include desktop {
     font-size: 16px;
   }
@@ -187,6 +190,9 @@ input[type="submit"] {
   }
   &_active {
     border-bottom: 1px solid #000000;
+  }
+  &__form {
+    position: relative;
   }
   &__new {
     border-bottom: 1px solid #1f232d;
@@ -228,25 +234,23 @@ input[type="submit"] {
   }
 }
 .textarea {
-  resize: none;
+  width: 100%;
+  margin-top: 20px;
   padding: 20px;
   border: 1px solid #d9dbe0;
   font-size: 16px;
   font-weight: 600;
   line-height: 30px;
   color: #414c63;
+  resize: none;
+  &__label {
+    position: relative;
+  }
   @include desktop {
     font-size: 16px;
   }
   @include tablets {
     font-size: 14px;
-  }
-  &__work {
-    height: 150px;
-    margin-top: 20px;
-  }
-  &__feedback {
-    margin-top: 20px;
   }
   &::placeholder {
     font-size: 16px;
@@ -386,6 +390,7 @@ input[type="submit"] {
   }
 }
 .download {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -403,6 +408,7 @@ input[type="submit"] {
     }
   }
   &__label {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -415,6 +421,8 @@ input[type="submit"] {
       border: none;
       width: 100%;
       background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
       & .download__title,
       & .download__btn {
         display: none
@@ -501,10 +509,13 @@ input[type="submit"] {
 .form {
   &__input {
     position: relative;
+    &:not(:first-child) {
+      margin-top: 30px
+    }
     &-icon {
       position: absolute;
       top: 50%;
-      left: 0;
+      left: -40px;
       width: 30px;
       height: 30px;
       transform: translateY(-50%);
@@ -520,11 +531,13 @@ input[type="submit"] {
     position: absolute;
     display: none;
     top: 100%;
-    left: 45px;
+    left: 50%;
+    transform: translateX(-50%);
     background: #cd1515;
-    padding: 10px 20px;
+    padding: 5px 20px;
     font-size: 14px;
     color: #ffffff;
+    white-space: pre;
     &:after {
       content: '';
       position: absolute;
@@ -548,6 +561,31 @@ input[type="submit"] {
 .error {
   & input {
     border-bottom: 1px solid #fb0000;
+    outline: none;
+  }
+  & textarea {
+    border-color: #fb0000;
+    outline: none;
+  }
+  & .download {
+    &__label {
+      border: 1px solid #fb0000;
+    }
+  }
+  & .work {
+    &__add {
+      color: #fb0000;
+    }
+  }
+  & .feedback {
+    &__avatar {
+      &-img {
+        border: 1px solid #fb0000;
+      }
+    }
+    &__add {
+      color: #fb0000;
+    }
   }
   & .form__error {
     display: block;
@@ -557,5 +595,42 @@ input[type="submit"] {
   }
   & .form__input-icon_password {
     background: svg-load('key.svg', fill=#fb0000, width=100%, height=100%) center no-repeat;
+  }
+}
+.tooltip {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  padding: 15px 20px;
+  visibility: hidden;
+  z-index: 3;
+  transition: 0.4s;
+  &.showed {
+    visibility: visible;
+    transform: translate(-50%,0)
+  }
+  &.success {
+    background: rgb(0, 180, 50)
+  }
+  &.error {
+    background: rgb(189, 6, 39)
+  }
+  &__title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  &__close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    background: svg-load('cross.svg', fill=#ffffff, width=100%, height=100%) center no-repeat;
   }
 }

@@ -17,6 +17,7 @@
           .about__card(v-if="showAddingForm")
             skills-add(
               @close="close"
+              :errorText="validation.firstError('skilltitle')"
             )
           .about__card(
             v-for= "category in categories"
@@ -30,8 +31,14 @@
 
 <script>
 import {mapActions, mapState} from 'vuex';
-
+import { Validator } from "simple-vue-validator";
 export default {
+  mixins: [require("simple-vue-validator").mixin],
+  validators: {
+    skilltitle: value => {
+      return Validator.value(value).required("Заполните название");
+    }
+  },
   components: {
     skillsAdd: () => import('templates/skills-add.vue'),
     skillsGroup: () => import('templates/skills-group.vue')
@@ -46,6 +53,7 @@ export default {
   },
   methods: {
     ...mapActions('categories',['fetchCategories']),
+    ...mapActions('tooltips',['showTooltip']),  
     ...mapActions('skills',['fetchSkills']),
     filterSkillsByCategoryId(categoryId) {
       return this.skills.filter(skill => skill.category === categoryId);

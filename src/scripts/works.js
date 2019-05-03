@@ -97,8 +97,15 @@ new Vue ({
       }
     }
   },
-  created() {
-    const data = require('../data/works.json');
-    this.works = this.makeArrWithRequiredImages(data);
+  async created() {
+    try {
+      const response = await this.$axios.get('/works/137');
+      this.works = response
+      this.works = this.makeArrWithRequiredImages(response);
+      return response;
+    } catch (error) {
+
+    }
+    // const data = require('../data/works.json');
   }
 });

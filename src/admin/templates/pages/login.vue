@@ -21,7 +21,7 @@
               v-model="user.password"
               :errorText="validation.firstError('user.password')"
             )
-            .login__btn
+            .form__btn.form__child.login__btn
               input.btn.btn__login(
                 type='submit'
                 :disabled="disableSubmit"
@@ -56,11 +56,8 @@ export default {
     }
   },
   methods: {
-    async back() {
-      try {
-        location.href = "/";
-      } catch (error) {
-      }
+    back() {
+      location.href = "/";
     },
     async login() {
       if ((await this.$validate()) === false) return;

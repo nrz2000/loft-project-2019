@@ -3,7 +3,7 @@
     template(v-if="interactive")
       .work__tags-child.work__tags-child_edit( 
         v-for="(tag, index) in tags"
-        :key="tag.index"
+        :key="tag"
       )
         span {{tag}}
         button.delete-light(type="button" @click="$emit('remove', index)")

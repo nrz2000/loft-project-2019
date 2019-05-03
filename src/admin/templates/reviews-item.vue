@@ -37,12 +37,20 @@ export default {
       }
     },
     ...mapActions('reviews', ['removeReview']),
+    ...mapActions('tooltips',['showTooltip']),
     async removeExistedReview () {
       if (confirm('Удалить отзыв?') === false) return;
       try {
         await this.removeReview(this.review.id);
+        this.showTooltip({
+          type: "success",
+          text: "Отзыв удален"
+        })
       } catch (error) {
-        alert('Ошибка при удалении отзыва')
+        this.showTooltip({
+          type: "error",
+          text: "Ошибка при удалении"
+        })
       }
     },
     ...mapMutations('reviews',['SET_CURRENT_REVIEW']),

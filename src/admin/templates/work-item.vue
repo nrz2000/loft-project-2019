@@ -44,13 +44,21 @@ export default {
   },
   methods: {
     ...mapActions('works',['removeWork']),
+    ...mapActions('tooltips',['showTooltip']),
     ...mapMutations('works',['SET_CURRENT_WORK']),
     async removeExistedWork() {
       if (confirm("Удалить работу?") === false) return;
       try {
         await this.removeWork(this.work.id);
+        this.showTooltip({
+          type: 'success',
+          text: "Работа удалена"
+        })
       } catch (error) {
-        alert('')
+        this.showTooltip({
+          type: 'success',
+          text: "Ошибка при удалении"
+        })
       }
     },
     updateWork() {

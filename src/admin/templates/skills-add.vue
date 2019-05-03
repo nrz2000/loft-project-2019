@@ -4,7 +4,13 @@
       .skills__wrap
         .skills__top
           .skills__title
-            input(type="text" v-model="skillTitle" placeholder="Название новой группы").input.input_active
+            app-input(
+              type="text"
+              v-model="skillTitle"
+              placeholder="Название новой группы"
+              :errorText="validation.firstError('skillTitle')"
+            )
+            //- input(type="text" v-model="skillTitle" placeholder="Название новой группы").input.input_active
           .skills__btns
             .skills__btn-child.skills__perform
               button.perform(type="button" @click="addSkillGroup")
@@ -23,8 +29,20 @@
 
 <script>
 import {mapActions, mapState} from "vuex";
-
+import { Validator } from "simple-vue-validator";
 export default {
+  mixins: [require("simple-vue-validator").mixin],
+  validators: {
+    skillTitle: value => {
+      return Validator.value(value).required("Заполните название");
+    }
+  },
+  props: {
+    errorText: String
+  },
+  components: {
+    appInput: () => import("templates/input.vue")
+  },
   data() {
     return {
       skillTitle: ""
@@ -32,13 +50,25 @@ export default {
   },
   methods: {
     ...mapActions('categories', ['addNewSkillGroup']),
+    ...mapActions('tooltips',['showTooltip']),
     async addSkillGroup() {
+      if ((await this.$validate()) === false) return;
       try {
-        await this.addNewSkillGroup(this.skillTitle);
+        const response = await this.addNewSkillGroup(this.skillTitle);
         this.skillTitle = "";
         this.$emit('close');
+
+        this.showTooltip({
+          type: "success",
+          text: "Группа создана"
+        })
       } catch(error) {
-        alert(error.message)
+        this.showTooltip({
+          type: "error",
+          text: error.message
+        })
+      } finally {
+        this.validation.reset();
       }
     }
   },
