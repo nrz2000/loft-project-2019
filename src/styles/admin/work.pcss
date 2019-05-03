@@ -14,6 +14,7 @@
       grid-gap: 54px 0;
     }
     @include tablets {
+      margin-top: 20px;
       padding: 0;
       grid-gap: 40px 0;
     }
@@ -69,8 +70,8 @@
     display: flex;
     margin-top: 15px;
     @include tablets {
-      display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 0
     }
     &-child {
       display: flex;
@@ -86,10 +87,8 @@
         margin-right: 10px;
       }
       &_edit {
-        &:not(:last-child) {
-          @include desktop {
-            margin: 0;
-          }
+        @include tablets {
+          margin-top: 10px;
         }
         & > span {
           margin-right: 10px;

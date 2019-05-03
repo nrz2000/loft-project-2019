@@ -1,3 +1,31 @@
+-
+    var menu = [
+        {
+            title: "Главная",
+            link: "#header"
+        },
+        {
+            title: "Обо мне",
+            link: "#about"
+        },
+        {
+            title: "Навыки",
+            link: "#skills"
+        },
+        {
+            title: "Работы",
+            link: "#work"
+        },
+        {
+            title: "Отзывы",
+            link: "#reviews"
+        },
+        {
+            title: "Связаться",
+            link: "#contacts"
+        }
+    ] 
+
 include ./mixins.pug
 
 <!DOCTYPE html>
@@ -24,14 +52,14 @@ html(lang="en")
           +image("main-slice-8.png", "parallax__img", "Параллакс слайд")
         .parallax__layer(data-speed="0.1")
           +image("main-slice-9.png", "parallax__img", "Параллакс слайд")
-      header.header
+      header.header#header
         .container
           .header__wrap.fullscreen-section
             .header__top
               .header__logo
                 span.logo НЗ
               .header__nav 
-                +nav('nav', ["Главная","Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"])
+                +nav('nav', menu)
               .header__mobile-menu
                 .header__socials
                   +socials('socials')
@@ -42,10 +70,10 @@ html(lang="en")
               h1.header__title Зиновьев <br> Никита
               span.header__subtitle Личный сайт <br> веб-разработчика
             .header__bottom
-              button.header__button
+              a.header__button(href="#about" data-scroll-to="#about")
                 span.header__prompt Скролл
                 +icon('scroll','scroll')
-      section.about
+      section.about#about
         .container
           .about__wrap
             .about__grid
@@ -73,7 +101,7 @@ html(lang="en")
           svg.triangle__child(viewBox="0 0 100 100" preserveAspectRatio="none")
             polygon(fill="#06001e" points="0,0 100,0 78,70")
 
-    section.skills
+    section.skills#skills
       .container
         .skills__wrap
           .skills__top
@@ -88,7 +116,7 @@ html(lang="en")
               +image('skills-bg.png','skills__bg',"Граффити")
             #skills-component
     
-    section.portfolio
+    section.portfolio#work
       .container
         .portfolio__wrap
           span.portfolio__title.section__title Мои работы
@@ -105,27 +133,21 @@ html(lang="en")
                 .slider-feedback__nav
                   button(@click="previous()").slider__button.slider-feedback__button.slider-feedback__button-prev <
                   button(@click="next()").slider__button.slider-feedback__button.slider-feedback__button-next >
-              .feedback__slider
-                flickity(ref="flickity" :options="flickityOptions").slider-feedback
-                  -
-                    var feedback = [
-                      ['Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!','fb-1.png','Ковальчук Дмитрий','Основатель Loftschool'],
-                      ['Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах','fb-2.png','Владимир Сабанцев','Преподаватель'],
-                      ['Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!','fb-1.png','Ковальчук Дмитрий','Основатель Loftschool'],
-                      ['Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах','fb-2.png','Владимир Сабанцев','Преподаватель']
-                    ]
-                  each item in feedback
-                      .slider-feedback__child.carousel-cell
-                        p.slider-feedback__quote #{item[0]}
-                        .slider-feedback__info
-                          .slider-feedback__info-avatar
-                            +image(`${item[1]}`,'slider-feedback__image',`Фото: ${item[1]}`)
-                          .slider-feedback__info-text
-                            span.slider-feedback__info-name #{item[2]}
-                            span.slider-feedback__info-post #{item[3]}
-      
+              .feedback__slider(v-if="render")
+                flickity(ref="flickity", :options="flickityOptions").slider-feedback
+                  div.carousel-cell.slider-feedback__child(
+                    v-for="review in reviews"
+                    :key="review.id"
+                  )
+                    p.slider-feedback__quote {{ review.text }}
+                    .slider-feedback__info
+                      .slider-feedback__info-avatar
+                        img(class="slider-feedback__image" :src="review.photo" alt="Аватар")
+                      .slider-feedback__info-text
+                        span.slider-feedback__info-name {{review.author}}
+                        span.slider-feedback__info-post {{review.occ}}
       .add-slide__child
-        section.contacts
+        section.contacts#contacts
           .container
             .contacts__wrap
               h2.contacts__title.section__title.section__title_light Связаться со мной
