@@ -1,4 +1,7 @@
 import Vue from "vue";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://webdev-api.loftschool.com/";
 
 const skill = {
   template: "#skill",
@@ -23,7 +26,8 @@ const skillsRow = {
     skill
   },
   props: {
-    skill: Object
+    category: Object,
+    skills: Array
   }
 }
 
@@ -35,16 +39,49 @@ new Vue ({
   },
   data() {
     return {
-      skills: {}
+      skills: [],
+      categories: []
     }
+  },
+  methods: {
+    filterSkillsByCategoryId(categoryId) {
+      return this.skills.filter(skill => skill.category === categoryId);
+    },
+    async fetchCategories() {
+        try {
+          const response = await axios.get('/categories/137');
+          this.categories = response.data;
+          return response;
+        } catch (error) {
+          throw new Error(
+            error.response.data.error || error.response.data.message
+          )
+
+        }
+      },
+    async fetchSkills() {
+        try {
+          const response = await axios.get('/skills/137');
+          this.skills = response.data;
+          return response;
+        } catch (error) {
+          throw new Error(
+            error.response.data.error || error.response.data.message
+          )
+
+        }
+      },
   },
   async created() {
     try {
-      const response = await this.$axios.get('/user/137')
-      this.skills = response;
+      await this.fetchCategories();
     } catch (error) {
-      
+      console.log('error on load categories');
     }
-    // const data = require("../data/skills.json");
+    try {
+      await this.fetchSkills();
+    } catch (error) {
+      console.log('error on load skills');
+    }
   }
 })

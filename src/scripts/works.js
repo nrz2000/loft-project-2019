@@ -1,7 +1,17 @@
-import Vue from "vue"
+import Vue from "vue";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://webdev-api.loftschool.com/";
+
 
 const btns = {
-  template: "#slider-btns"
+  template: "#slider-btns",
+  props: {
+    works: Array,
+    currentWork: Object,
+    currentIndex: Number,
+  }
+
 };
 
 const thumbs = {
@@ -44,7 +54,7 @@ const info = {
   },
   computed: {
     tagsArray() {
-      return this.currentWork.skills.split(',');
+      return this.currentWork.techs.split(', ');
     }
   }
 };
@@ -79,9 +89,10 @@ new Vue ({
       if(value < 0) this.currentIndex = worksAmount;
     },
     makeArrWithRequiredImages(data) {
-      return data.map(item => {
-        const requiredPic = require(`../images/content/${item.photo}`);
+      return data.map((item,index) => {
+        const requiredPic = (`https://webdev-api.loftschool.com/${item.photo}`);
         item.photo = requiredPic;
+        // item.index = index;
 
         return item;
       })
@@ -95,17 +106,27 @@ new Vue ({
           this.currentIndex--;
           break;
       }
+    },
+    async fetchWorks() {
+      try {
+        const response = await axios.get('/works/137');
+        this.works = response.data;
+        return response;
+      } catch (error) {
+        throw new Error(
+          error.response.data.error || error.response.data.message
+        )
+
+      }
     }
   },
   async created() {
     try {
-      const response = await this.$axios.get('/works/137');
-      this.works = response
-      this.works = this.makeArrWithRequiredImages(response);
-      return response;
+      await this.fetchWorks();
     } catch (error) {
-
+      console.log('error on load works');
     }
-    // const data = require('../data/works.json');
+    this.works = this.makeArrWithRequiredImages(this.works);
+    this.render = true;
   }
 });

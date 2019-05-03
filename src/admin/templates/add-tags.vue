@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     tagsArray() {
-      if(!!this.tags.lenght === false) return [];
+      if(!!this.tags.length === false) return [];
       return this.tags.split(",");
     },
     tags: {
