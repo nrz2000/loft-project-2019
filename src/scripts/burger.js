@@ -14,10 +14,10 @@ close.addEventListener('click', e=> {
   e.stopPropagation();
   toggleBurger();
 });
-burgerNavChild.addEventListener('click', e=> {
-  e.stopPropagation();
-  toggleBurger();
-});
+// burgerNavChild.addEventListener('click', e=> {
+//   e.stopPropagation();
+//   toggleBurger();
+// });
 document.addEventListener('click', e=> {
   let target = e.target;
   let eburger = target == burger || burger.contains(target);
