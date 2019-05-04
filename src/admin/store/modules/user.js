@@ -23,8 +23,7 @@ export default {
     async logout ({ commit }) {
       const response = await this.$axios.post('/logout');
       commit('CLEAR_USER');
-      location.href = '/';
-      // localStorage.removeToken('token');
+      location.href = '/loft-project-2019/';
       return response;
     }
   }
