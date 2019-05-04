@@ -1,6 +1,7 @@
-let burgerBtn = document.getElementById("burger-btn");
-let burger = document.getElementById("burger");
-let close = document.getElementById("close");
+var burgerBtn = document.getElementById("burger-btn");
+var burger = document.getElementById("burger");
+var burgerNavChild = document.querySelectorAll(".nav__link")
+var close = document.getElementById("close");
 
 const toggleBurger = () => {
   burger.classList.toggle('mobile-menu_visible')
@@ -13,6 +14,10 @@ close.addEventListener('click', e=> {
   e.stopPropagation();
   toggleBurger();
 });
+burgerNavChild.addEventListener('click', e=> {
+  e.stopPropagation();
+  toggleBurger();
+});
 document.addEventListener('click', e=> {
   let target = e.target;
   let eburger = target == burger || burger.contains(target);
@@ -22,3 +27,4 @@ document.addEventListener('click', e=> {
     toggleBurger();
   }
 });
+// if(document.getElementsByClassName("nav__link").addEventListener('click',))
