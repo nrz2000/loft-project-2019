@@ -2,23 +2,25 @@ script(type="text/x-template")#skills-list
   .skills__metrics
     ul.metrics
       li.metrics__child(
-        v-for="skill in skills"
-        :key="skill.skillsGroup"
+        v-for="category in categories"
+        :key="category.id"
       )
         skills-row(
-          :skill="skill"
+          :category="category"
+          :skills="filterSkillsByCategoryId(category.id)"
         )
         
 
 script(type="text/x-template")#skills-row
   .metrics__row
-    h3.metrics__title {{skill.skillsGroup}}
+    h3.metrics__title {{category.category}}
     ul.metrics__list
       li.metrics__list-child(
-        v-for="(skillPercent, skillName) in skill.skills")
+        v-for="skill in skills"
+      )
         skill(
-          :skillName="skillName"
-          :skillPercent="skillPercent"
+          :skillName="skill.title"
+          :skillPercent="skill.percent"
         )
 
 script(type="text/x-template")#skill

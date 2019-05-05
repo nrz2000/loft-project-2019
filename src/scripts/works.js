@@ -1,7 +1,17 @@
-import Vue from "vue"
+import Vue from "vue";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://webdev-api.loftschool.com/";
+
 
 const btns = {
-  template: "#slider-btns"
+  template: "#slider-btns",
+  props: {
+    works: Array,
+    currentWork: Object,
+    currentIndex: Number
+  }
+
 };
 
 const thumbs = {
@@ -11,13 +21,9 @@ const thumbs = {
   },
   props: {
     works: Array,
-    currentWork: Object
+    currentWork: Object,
+    currentIndex: Number
   }
-  // computed: {
-  //   active() {
-  //     this.works
-  //   }
-  // }
 };
 
 const display = {
@@ -35,6 +41,7 @@ const display = {
 const tags = {
   template: "#slider-tags",
   props: {
+    currentWork: Object,
     tagsArray: Array
   }
 };
@@ -49,7 +56,7 @@ const info = {
   },
   computed: {
     tagsArray() {
-      return this.currentWork.skills.split(',');
+      return this.currentWork.techs.split(', ');
     }
   }
 };
@@ -64,12 +71,13 @@ new Vue ({
   data() {
     return {
       works: [],
-      currentIndex: 0
+      currentIndex: 0,
+      render: false
     };
   },
   computed: {
     currentWork() {
-      return this.works[this.currentIndex];
+      return this.works[0];
     }
   },
   watch: {
@@ -84,26 +92,53 @@ new Vue ({
       if(value < 0) this.currentIndex = worksAmount;
     },
     makeArrWithRequiredImages(data) {
-      return data.map(item => {
-        const requiredPic = require(`../images/content/${item.photo}`);
+      return data.map((item,index) => {
+        const requiredPic = (`https://webdev-api.loftschool.com/${item.photo}`);
         item.photo = requiredPic;
+        item.index = index;
 
         return item;
       })
     },
+     handleChangeIndex(index) {
+       const arr = this.works.splice(0, index);
+       this.works = [...this.works, ...arr];
+     },
     handleSlide(direction) {
       switch (direction) {
         case "next" :
+          this.works.push(this.works[0]);
+          this.works.shift()
           this.currentIndex++;
           break;
         case "prev" :
+          const lastItem = this.works[this.works.length - 1];
+          this.works.unshift(lastItem);
+          this.works.pop();
           this.currentIndex--;
           break;
       }
+    },
+    async fetchWorks() {
+      try {
+        const response = await axios.get('/works/137');
+        this.works = response.data;
+        return response;
+      } catch (error) {
+        throw new Error(
+          error.response.data.error || error.response.data.message
+        )
+
+      }
     }
   },
-  created() {
-    const data = require('../data/works.json');
-    this.works = this.makeArrWithRequiredImages(data);
+  async created() {
+    try {
+      await this.fetchWorks();
+    } catch (error) {
+      console.log('error on load works');
+    }
+    this.works = this.makeArrWithRequiredImages(this.works);
+    this.render = true;
   }
 });
