@@ -9,7 +9,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (env, argv) => {
   const isProductionBuild = argv.mode === "production";
-  const publicPath = '/loft-project-2019/';
+  const publicPath = '/loftschool-spa-vue/';
 
   const pcss = {
     test: /\.(p|post|)css$/,
